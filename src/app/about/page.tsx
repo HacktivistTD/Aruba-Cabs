@@ -29,7 +29,7 @@ export default function AboutPage() {
   const slideInRight = useScrollAnimation();
 
   return (
-    <main className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-teal-50">
+    <main className="min-h-screen">
       {/* Hero Section */}
       <section className="py-20 px-6 text-center">
         <motion.div
@@ -38,14 +38,14 @@ export default function AboutPage() {
           transition={{ duration: 1 }}
           className="max-w-4xl mx-auto"
         >
-          <h1 className="text-4xl md:text-5xl font-extrabold text-gray-800 mb-6">
-            About <span className="text-blue-600">Aruba Cab Services</span>
+          <h1 className="text-4xl md:text-5xl font-bold text-gray-400 mb-6">
+            About <span className="text-yellow-400">Aruba Cab Services</span>
           </h1>
           <motion.p
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.5, duration: 1 }}
-            className="text-lg text-gray-600 leading-relaxed max-w-2xl mx-auto"
+            className="text-lg text-white leading-relaxed max-w-2xl mx-auto"
           >
             Your trusted partner for exploring the beauty and culture of Sri Lanka — one smooth ride at a time.
           </motion.p>
@@ -61,9 +61,9 @@ export default function AboutPage() {
           variants={variants}
           initial="hidden"
           animate={fadeInUp.controls}
-          className="max-w-3xl mx-auto bg-white p-10 rounded-2xl shadow-lg"
+          className="max-w-3xl mx-auto bg-yellow-100 p-10 rounded-2xl shadow-lg"
         >
-          <h2 className="text-3xl font-bold text-gray-800 mb-6">Our Story</h2>
+          <h2 className="text-3xl font-bold text-gray-800 mb-6 text-center">Our Story</h2>
           <p className="text-gray-700 leading-relaxed mb-4">
             Founded in 2015, <strong>Aruba Cab Services</strong> began with a simple vision: to provide reliable, comfortable, and personalized cab services for tourists exploring Sri Lanka.
           </p>
@@ -74,7 +74,7 @@ export default function AboutPage() {
       </section>
 
       {/* Mission & Vision */}
-      <section className="py-20 px-6 bg-white">
+      <section className="py-20 px-6 ">
         <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
           {/* Mission */}
           <motion.div
@@ -82,9 +82,9 @@ export default function AboutPage() {
             variants={variants}
             initial="hidden"
             animate={slideInLeft.controls}
-            className="bg-blue-50 p-8 rounded-xl shadow-md"
+            className="bg-yellow-50 p-8 rounded-xl shadow-md"
           >
-            <h3 className="text-2xl font-bold text-blue-700 mb-4">Our Mission</h3>
+            <h3 className="text-2xl font-bold text-blue-700 mb-4 text-center">Our Mission</h3>
             <p className="text-gray-700 leading-relaxed">
               To deliver seamless, safe, and memorable travel experiences by combining comfort, professionalism, and local expertise — ensuring every journey feels like home.
             </p>
@@ -96,9 +96,9 @@ export default function AboutPage() {
             variants={variants}
             initial="hidden"
             animate={slideInRight.controls}
-            className="bg-teal-50 p-8 rounded-xl shadow-md"
+            className="bg-yellow-50 p-8 rounded-xl shadow-md"
           >
-            <h3 className="text-2xl font-bold text-teal-700 mb-4">Our Vision</h3>
+            <h3 className="text-2xl font-bold text-teal-700 mb-4 text-center">Our Vision</h3>
             <p className="text-gray-700 leading-relaxed">
               To be the most trusted and preferred cab service across Sri Lanka, recognized for excellence in customer service, sustainability, and cultural connection.
             </p>
@@ -107,13 +107,13 @@ export default function AboutPage() {
       </section>
 
       {/* Values Section */}
-      <section className="py-20 px-6 bg-gray-50">
+      <section className="py-20 px-6 ">
         <motion.h2
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.8 }}
-          className="text-3xl font-bold text-center text-gray-800 mb-12"
+          className="text-3xl font-bold text-center text-yellow-400 mb-12"
         >
           Our Core Values
         </motion.h2>
@@ -148,7 +148,7 @@ export default function AboutPage() {
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-          className="max-w-3xl mx-auto bg-gradient-to-r from-blue-600 to-teal-500 text-white p-10 rounded-2xl shadow-xl text-center"
+          className="max-w-3xl mx-auto bg-yellow-400 text-black p-10 rounded-2xl shadow-xl text-center"
         >
           <h2 className="text-3xl font-bold mb-4">Meet Our Team</h2>
           <p className="text-lg opacity-95 mb-6">
@@ -157,7 +157,7 @@ export default function AboutPage() {
           <motion.button
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            className="bg-white text-blue-600 font-semibold px-8 py-3 rounded-full shadow-lg hover:shadow-xl transition-all"
+            className="bg-white text-black font-semibold px-8 py-3 rounded-full shadow-lg hover:shadow-xl transition-all"
           >
             Learn More About Our Drivers
           </motion.button>
@@ -165,7 +165,7 @@ export default function AboutPage() {
       </section>
 
       {/* Final CTA */}
-      <section className="py-20 px-6 text-center bg-gray-800 text-white">
+      <section className="py-20 px-6 text-center text-white">
         <motion.h2
           initial={{ y: 30, opacity: 0 }}
           whileInView={{ y: 0, opacity: 1 }}
@@ -188,7 +188,7 @@ export default function AboutPage() {
           href="/book"
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
-          className="inline-block bg-blue-500 hover:bg-blue-400 text-white font-bold px-10 py-4 rounded-full shadow-lg transition-all"
+          className="inline-block bg-yellow-500 hover:bg-blue-400 text-black font-bold px-10 py-4 rounded-full shadow-lg transition-all"
         >
           🚖 Book Your Ride Today
         </motion.a>
