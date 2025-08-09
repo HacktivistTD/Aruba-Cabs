@@ -58,7 +58,7 @@ export default function HomePage() {
             initial={{ opacity: 0, y: -40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, ease: 'easeOut' }}
-            className="text-4xl md:text-6xl font-extrabold text-white leading-tight mb-6 drop-shadow-md"
+            className="text-4xl md:text-6xl font-bold text-white leading-tight mb-6 drop-shadow-md"
           >
             Explore Sri Lanka
             <span className="text-yellow-400 block">with Aruba Cab Services</span>
