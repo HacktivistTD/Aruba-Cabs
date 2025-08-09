@@ -152,7 +152,7 @@ export default function AboutPage() {
         >
           <h2 className="text-3xl font-bold mb-4">Meet Our Team</h2>
           <p className="text-lg opacity-95 mb-6">
-            Our drivers aren’t just professionals — they’re storytellers, guides, and ambassadors of Sri Lankan culture.
+            Our drivers aren&apos;t just professionals — they&apos;re storytellers, guides, and ambassadors of Sri Lankan culture.
           </p>
           <motion.button
             whileHover={{ scale: 1.05 }}

@@ -15,7 +15,7 @@ export default function Header() {
           <Link href="/custom-trip" className="mr-4 hover:underline">
             Custom Trip
           </Link>
-          <Link href="/Linkbout" className="mr-4 hover:underline">
+          <Link href="/about" className="mr-4 hover:underline">
             About
           </Link>
           <Link href="/contact" className="hover:underline">
