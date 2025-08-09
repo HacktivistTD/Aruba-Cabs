@@ -6,7 +6,7 @@ import { useEffect, useRef } from 'react';
 // Custom hook for scroll-triggered animations
 const useScrollReveal = () => {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, threshold: 0.1 });
+  const isInView = useInView(ref, { once: true });
   const controls = useAnimation();
 
   useEffect(() => {
@@ -24,7 +24,7 @@ export default function PackagesPage() {
       title: 'South Coast Adventure',
       subtitle: 'Beaches, culture & heritage',
       description:
-        'Explore stunning beaches, historical sites, and vibrant culture on Sri Lanka’s south coast. Visit Galle Fort, Mirissa, and Tangalle.',
+        'Explore stunning beaches, historical sites, and vibrant culture on Sri Lanka &apos;s south coast. Visit Galle Fort, Mirissa, and Tangalle.',
       price: 'LKR 15,000',
       duration: '3 Days / 2 Nights',
       image:
@@ -48,7 +48,7 @@ export default function PackagesPage() {
       title: 'Hill Country Escape',
       subtitle: 'Tea, mist & mountain views',
       description:
-        'Enjoy scenic tea plantations, waterfalls, and cool mountain air in Sri Lanka’s hill country. Ella, Nuwara Eliya, and Bandarawela await.',
+        'Enjoy scenic tea plantations, waterfalls, and cool mountain air in Sri Lanka&apos;s hill country. Ella, Nuwara Eliya, and Bandarawela await.',
       price: 'LKR 18,000',
       duration: '3 Days / 2 Nights',
       image:
@@ -164,7 +164,7 @@ export default function PackagesPage() {
           transition={{ duration: 0.8 }}
           className="text-3xl md:text-4xl font-bold mb-6"
         >
-          Can't Find the Perfect Package?
+          Can&apos;t Find the Perfect Package?
         </motion.h2>
         <motion.p
           initial={{ opacity: 0, y: 20 }}
@@ -185,10 +185,7 @@ export default function PackagesPage() {
         </motion.a>
       </section>
 
-      {/* Footer */}
-      <footer className="py-8 px-6 text-center text-gray-500 bg-gray-100">
-        <p>© 2025 Aruba Cab Services. Designed for unforgettable journeys across Sri Lanka.</p>
-      </footer>
+     
     </main>
   );
 }
