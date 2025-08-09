@@ -6,23 +6,33 @@ const nextConfig: NextConfig = {
     remotePatterns: [
       {
         protocol: 'https',
-        hostname: 'lh3.googleusercontent.com', // South Coast Adventure
+        hostname: 'lh3.googleusercontent.com',
+        pathname: '/**',
       },
       {
         protocol: 'https',
-        hostname: 'encrypted-tbn1.gstatic.com', // Cultural Triangle Tour
+        hostname: 'encrypted-tbn0.gstatic.com', // ← Added: Fix for your error
+        pathname: '/**',
       },
       {
         protocol: 'https',
-        hostname: 'cdn.getyourguide.com', // Hill Country Escape
+        hostname: 'encrypted-tbn1.gstatic.com',
+        pathname: '/**',
       },
       {
         protocol: 'https',
-        hostname: 'lk.lakpura.com', // Yala & Udawalawe Safaris
+        hostname: 'cdn.getyourguide.com',
+        pathname: '/**',
       },
       {
         protocol: 'https',
-        hostname: 'lp-cms-production.imgix.net', // Arugam Bay Surf Escape
+        hostname: 'lk.lakpura.com',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'lp-cms-production.imgix.net',
+        pathname: '/**',
       },
     ],
   },
