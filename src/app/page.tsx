@@ -1,7 +1,8 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { motion, easeInOut } from 'framer-motion';
 import { useEffect, useState } from 'react';
+import Image from 'next/image';
 
 export default function HomePage() {
   const [isLoaded, setIsLoaded] = useState(false);
@@ -27,7 +28,7 @@ export default function HomePage() {
     visible: {
       y: 0,
       opacity: 1,
-      transition: { duration: 0.8, ease: 'easeOut' },
+      transition: { duration: 0.8, ease: easeInOut },
     },
   };
 
@@ -70,7 +71,7 @@ export default function HomePage() {
             className="text-lg md:text-xl text-gray-50 mb-10 max-w-3xl mx-auto leading-relaxed"
           >
             Discover the beauty of Sri Lanka with reliable, comfortable, and personalized cab services. 
-            From ancient temples to tropical beaches, we'll take you there in style.
+            From ancient temples to tropical beaches, we&apos;ll take you there in style.
           </motion.p>
 
           <motion.div
@@ -107,7 +108,7 @@ export default function HomePage() {
           {[
             {
               title: '24/7 Availability',
-              desc: 'We’re always ready to pick you up, anytime, anywhere in Sri Lanka.',
+              desc: 'We&apos;re always ready to pick you up, anytime, anywhere in Sri Lanka.',
               icon: '⏱️',
             },
             {
@@ -167,20 +168,26 @@ export default function HomePage() {
               whileHover={{ y: -10, scale: 1.03 }}
               className="rounded-xl overflow-hidden shadow-lg group cursor-pointer"
             >
-              <div className="relative h-56 overflow-hidden">
-                <img
-                  src={dest.img}
-                  alt={dest.name}
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                />
-                <div className="absolute inset-0 bg-black bg-opacity-30 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  <span className="text-white text-xl font-semibold">{dest.name}</span>
+              <>
+                <div className="relative w-full h-64">
+                  <Image
+                    src={dest.img}
+                    alt={dest.name}
+                    fill
+                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                    sizes="(max-width: 768px) 100vw, 33vw"
+                    style={{ objectFit: 'cover' }}
+                    priority={index === 0}
+                  />
+                  <div className="absolute inset-0 bg-black bg-opacity-30 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <span className="text-white text-xl font-semibold">{dest.name}</span>
+                  </div>
                 </div>
-              </div>
-              <div className="p-5 bg-white">
-                <h3 className="text-xl font-semibold text-gray-800">{dest.name}</h3>
-                <p className="text-gray-600 mt-2">A must-visit gem of Sri Lanka’s natural beauty.</p>
-              </div>
+                <div className="p-5 bg-white">
+                  <h3 className="text-xl font-semibold text-gray-800">{dest.name}</h3>
+                  <p className="text-gray-600 mt-2">A must-visit gem of Sri Lanka&apos;s natural beauty.</p>
+                </div>
+              </>
             </motion.div>
           ))}
         </div>
@@ -215,7 +222,7 @@ export default function HomePage() {
               transition={{ delay: index * 0.3 }}
               className="bg-gray-700 p-6 rounded-xl shadow-lg"
             >
-              <p className="italic text-gray-200 mb-4">"{testimonial.text}"</p>
+              <p className="italic text-gray-200 mb-4">&quot;{testimonial.text}&quot;</p>
               <div className="font-semibold">{testimonial.name}</div>
               <div className="text-sm text-gray-400">{testimonial.country}</div>
             </motion.div>

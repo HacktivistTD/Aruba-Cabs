@@ -1,25 +1,26 @@
 // src/components/Header.tsx
+import Link from 'next/link';
 
 export default function Header() {
   return (
     <header className=" text-white p-4">
       <nav className="container mx-auto flex justify-between items-center">
-        <a href="/" className="font-bold text-xl">
+        <Link href="/" className="font-bold text-xl">
           Aruba
-        </a>
+        </Link>
         <div>
-          <a href="/packages" className="mr-4 hover:underline">
+          <Link href="/packages" className="mr-4 hover:underline">
             Packages
-          </a>
-          <a href="/custom-trip" className="mr-4 hover:underline">
+          </Link>
+          <Link href="/custom-trip" className="mr-4 hover:underline">
             Custom Trip
-          </a>
-          <a href="/about" className="mr-4 hover:underline">
+          </Link>
+          <Link href="/Linkbout" className="mr-4 hover:underline">
             About
-          </a>
-          <a href="/contact" className="hover:underline">
+          </Link>
+          <Link href="/contact" className="hover:underline">
             Contact
-          </a>
+          </Link>
         </div>
       </nav>
     </header>

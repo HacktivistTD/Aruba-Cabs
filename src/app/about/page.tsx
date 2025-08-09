@@ -6,7 +6,7 @@ import { useEffect, useRef } from 'react';
 // Custom hook for scroll animation
 const useScrollAnimation = () => {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, threshold: 0.1 });
+  const isInView = useInView(ref, { once: true });
   const controls = useAnimation();
 
   useEffect(() => {
@@ -21,7 +21,7 @@ const useScrollAnimation = () => {
 export default function AboutPage() {
   const variants = {
     hidden: { opacity: 0, y: 50 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: 'easeOut' } },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" as const } },
   };
 
   const fadeInUp = useScrollAnimation();

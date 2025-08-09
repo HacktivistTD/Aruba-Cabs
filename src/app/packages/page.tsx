@@ -2,6 +2,7 @@
 
 import { motion, useAnimation, useInView } from 'framer-motion';
 import { useEffect, useRef } from 'react';
+import Image from 'next/image';
 
 // Custom hook for scroll-triggered animations
 const useScrollReveal = () => {
@@ -17,6 +18,80 @@ const useScrollReveal = () => {
 
   return { ref, controls };
 };
+
+// Define a type for package data
+type Package = {
+  title: string;
+  subtitle: string;
+  description: string;
+  price: string;
+  duration: string;
+  image: string;
+  color: string;
+  delay: number;
+};
+
+// Child component for each package card
+function PackageCard({ pkg }: { pkg: Package }) {
+  const reveal = useScrollReveal();
+
+  return (
+    <motion.div
+      ref={reveal.ref}
+      variants={{
+        hidden: { opacity: 0, y: 50 },
+        visible: { opacity: 1, y: 0 },
+      }}
+      initial="hidden"
+      animate={reveal.controls}
+      transition={{ delay: pkg.delay, duration: 0.7 }}
+      whileHover={{ y: -12, scale: 1.02 }}
+      className="group bg-white rounded-2xl shadow-xl overflow-hidden hover:shadow-2xl transition-all duration-500 flex flex-col relative"
+    >
+      {/* Image */}
+      <div className="relative h-56 w-full overflow-hidden">
+        <Image
+          src={pkg.image}
+          alt={pkg.title}
+          fill
+          className="object-cover group-hover:scale-110 transition-transform duration-700"
+          sizes="(max-width: 768px) 100vw, 33vw"
+          style={{ objectFit: 'cover' }}
+          priority={true}
+        />
+        <div
+          className={`absolute inset-0 bg-gradient-to-t ${pkg.color} opacity-20 group-hover:opacity-30 transition-opacity duration-300`}
+        ></div>
+      </div>
+
+      {/* Content */}
+      <div className="p-7 flex-1 flex flex-col">
+        <div>
+          <h2 className="text-2xl font-bold text-gray-800 mb-1">{pkg.title}</h2>
+          <p className="text-teal-600 font-medium text-sm mb-3">{pkg.subtitle}</p>
+          <p className="text-gray-600 leading-relaxed text-sm mb-6 flex-1">{pkg.description}</p>
+        </div>
+
+        <div className="mt-auto">
+          <div className="flex justify-between items-center mb-4">
+            <span className="text-lg font-bold text-gray-800">From {pkg.price}</span>
+            <span className="text-xs font-medium text-gray-500 bg-gray-100 px-3 py-1 rounded-full">
+              {pkg.duration}
+            </span>
+          </div>
+
+          <motion.button
+            whileHover={{ scale: 1.03 }}
+            whileTap={{ scale: 0.98 }}
+            className={`w-full py-3 rounded-xl font-semibold text-white bg-gradient-to-r ${pkg.color} shadow-md hover:shadow-lg transition-all`}
+          >
+            📅 Book This Package
+          </motion.button>
+        </div>
+      </div>
+    </motion.div>
+  );
+}
 
 export default function PackagesPage() {
   const packages = [
@@ -95,63 +170,9 @@ export default function PackagesPage() {
       {/* Packages Grid */}
       <section className="px-6 pb-24">
         <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
-          {packages.map((pkg, index) => {
-            const reveal = useScrollReveal();
-
-            return (
-              <motion.div
-                key={index}
-                ref={reveal.ref}
-                variants={{
-                  hidden: { opacity: 0, y: 50 },
-                  visible: { opacity: 1, y: 0 },
-                }}
-                initial="hidden"
-                animate={reveal.controls}
-                transition={{ delay: pkg.delay, duration: 0.7 }}
-                whileHover={{ y: -12, scale: 1.02 }}
-                className="group bg-white rounded-2xl shadow-xl overflow-hidden hover:shadow-2xl transition-all duration-500 flex flex-col"
-              >
-                {/* Image */}
-                <div className="relative h-56 overflow-hidden">
-                  <img
-                    src={pkg.image}
-                    alt={pkg.title}
-                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
-                  />
-                  <div
-                    className={`absolute inset-0 bg-gradient-to-t ${pkg.color} opacity-20 group-hover:opacity-30 transition-opacity duration-300`}
-                  ></div>
-                </div>
-
-                {/* Content */}
-                <div className="p-7 flex-1 flex flex-col">
-                  <div>
-                    <h2 className="text-2xl font-bold text-gray-800 mb-1">{pkg.title}</h2>
-                    <p className="text-teal-600 font-medium text-sm mb-3">{pkg.subtitle}</p>
-                    <p className="text-gray-600 leading-relaxed text-sm mb-6 flex-1">{pkg.description}</p>
-                  </div>
-
-                  <div className="mt-auto">
-                    <div className="flex justify-between items-center mb-4">
-                      <span className="text-lg font-bold text-gray-800">From {pkg.price}</span>
-                      <span className="text-xs font-medium text-gray-500 bg-gray-100 px-3 py-1 rounded-full">
-                        {pkg.duration}
-                      </span>
-                    </div>
-
-                    <motion.button
-                      whileHover={{ scale: 1.03 }}
-                      whileTap={{ scale: 0.98 }}
-                      className={`w-full py-3 rounded-xl font-semibold text-white bg-gradient-to-r ${pkg.color} shadow-md hover:shadow-lg transition-all`}
-                    >
-                      📅 Book This Package
-                    </motion.button>
-                  </div>
-                </div>
-              </motion.div>
-            );
-          })}
+          {packages.map((pkg) => (
+            <PackageCard key={pkg.title} pkg={pkg} />
+          ))}
         </div>
       </section>
 
@@ -181,11 +202,9 @@ export default function PackagesPage() {
           whileTap={{ scale: 0.95 }}
           className="inline-block bg-white text-gray-800 font-bold px-10 py-4 rounded-full shadow-lg hover:shadow-xl transition-all"
         >
-          ✨ Build Your Own Tour
+          Build Your Own Tour
         </motion.a>
       </section>
-
-     
     </main>
   );
 }
