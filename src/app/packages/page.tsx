@@ -1,5 +1,8 @@
 'use client';
 
+
+
+
 import { motion, useAnimation, useInView, easeInOut } from 'framer-motion';
 import { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';

@@ -3,6 +3,12 @@
 import { motion, useAnimation, useInView } from 'framer-motion';
 import { useEffect, useRef } from 'react';
 
+
+
+
+
+
+
 // Custom hook for scroll animation
 const useScrollAnimation = () => {
   const ref = useRef(null);
