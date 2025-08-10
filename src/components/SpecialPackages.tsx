@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
+import Image from "next/image";
 import { X, MapPin, Hotel, Calendar, Users, Star, ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react';
 
 const packages = [
@@ -8,7 +9,7 @@ const packages = [
     id: "secret-shores",
     title: "Secret Shores of Sri Lanka",
     subtitle: "Hidden Paradise Awaits",
-    description: "Discover the untouched beaches and hidden coves of Sri Lanka's stunning coastline. Perfect for travelers seeking tranquility away from the crowds.",
+    description: "Discover the untouched beaches and hidden coves of Sri Lanka&apos;s stunning coastline. Perfect for travelers seeking tranquility away from the crowds.",
     longDescription: "Embark on a journey to Sri Lanka's most secluded and breathtaking coastal destinations. This exclusive package takes you beyond the typical tourist trails to discover pristine beaches, crystal-clear lagoons, and untouched natural beauty. Experience the authentic charm of coastal Sri Lanka while enjoying luxury accommodations and personalized service.",
     images: [
       "https://lp-cms-production.imgix.net/2019-06/f0275838e5f1a765d23f3d1835d4c541-arugam-bay-beach.jpg?w=1920&h=640&fit=crop",
@@ -63,8 +64,10 @@ const packages = [
   }
 ];
 
+type PackageType = typeof packages[number];
+
 export default function AdvancedSpecialPackages() {
-  const [selectedPackage, setSelectedPackage] = useState(null);
+  const [selectedPackage, setSelectedPackage] = useState<PackageType | null>(null);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [imageLoading, setImageLoading] = useState(false);
   const modalRef = useRef(null);
@@ -90,7 +93,7 @@ export default function AdvancedSpecialPackages() {
 
   // Close modal on escape key
   useEffect(() => {
-    const handleEscape = (e) => {
+    const handleEscape = (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
         setSelectedPackage(null);
       }
@@ -107,7 +110,7 @@ export default function AdvancedSpecialPackages() {
     };
   }, [selectedPackage]);
 
-  const openPackageModal = (pkg) => {
+  const openPackageModal = (pkg: PackageType) => {
     setSelectedPackage(pkg);
     setCurrentImageIndex(0);
     setImageLoading(true);
@@ -134,7 +137,7 @@ export default function AdvancedSpecialPackages() {
             Special Packages
           </h2>
           <p className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
-            Curated experiences that go beyond ordinary travel. Discover Sri Lanka's hidden gems with our exclusive, handcrafted adventures.
+            Curated experiences that go beyond ordinary travel. Discover Sri Lanka&apos;s hidden gems with our exclusive, handcrafted adventures.
           </p>
         </div>
 
@@ -150,11 +153,14 @@ export default function AdvancedSpecialPackages() {
               <div className="relative bg-gradient-to-br from-gray-800 to-gray-900 rounded-3xl overflow-hidden shadow-2xl border border-gray-700 hover:border-gray-500 transition-all duration-500">
                 {/* Image Container */}
                 <div className="relative h-64 overflow-hidden">
-                  <img
+                  <Image
                     src={pkg.images[0]}
                     alt={pkg.title}
-                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                    loading="lazy"
+                    fill
+                    className="object-cover transition-transform duration-700 group-hover:scale-110"
+                    style={{ objectFit: "cover" }}
+                    sizes="(max-width: 768px) 100vw, 33vw"
+                    priority={false}
                   />
                   <div className={`absolute inset-0 bg-gradient-to-t ${pkg.gradient} opacity-60 group-hover:opacity-80 transition-opacity duration-500`}></div>
                   
@@ -259,9 +265,11 @@ export default function AdvancedSpecialPackages() {
                       </div>
                     )}
                     
-                    <img
+                    <Image
                       src={selectedPackage.images[currentImageIndex]}
                       alt={`${selectedPackage.title} - Image ${currentImageIndex + 1}`}
+                      width={800}
+                      height={384}
                       className="w-full h-96 object-cover transition-transform duration-500 group-hover:scale-105"
                       onLoad={() => setImageLoading(false)}
                     />
@@ -321,9 +329,11 @@ export default function AdvancedSpecialPackages() {
                               : 'hover:scale-105 opacity-70 hover:opacity-100'
                           }`}
                         >
-                          <img
+                          <Image
                             src={image}
                             alt={`Thumbnail ${index + 1}`}
+                            width={200}
+                            height={96}
                             className="w-full h-full object-cover"
                           />
                         </button>

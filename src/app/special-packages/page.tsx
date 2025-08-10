@@ -1,5 +1,6 @@
 "use client";
 
+import { Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 
 const packages = [
@@ -21,7 +22,7 @@ const packages = [
   },
 ];
 
-export default function SpecialPackagesPage() {
+function PackageDetails() {
   const searchParams = useSearchParams();
   const id = searchParams.get("id");
 
@@ -30,7 +31,7 @@ export default function SpecialPackagesPage() {
     if (!pkg) return <p className="text-center mt-10">Package not found</p>;
 
     return (
-      <div className="max-w-3xl mx-auto p-6">
+      <div className="max-w-3xl mx-auto p-6 text-white">
         <h1 className="text-3xl font-bold mb-4">{pkg.title}</h1>
         <p className="mb-6">{pkg.description}</p>
 
@@ -60,22 +61,29 @@ export default function SpecialPackagesPage() {
     );
   }
 
-  // Default view — all packages list
   return (
     <div className="max-w-5xl mx-auto p-6">
-      <h1 className="text-3xl font-bold mb-6">All Special Packages</h1>
+      <h1 className="text-3xl font-bold mb-6 text-white">All Special Packages</h1>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {packages.map((pkg) => (
           <a
             key={pkg.id}
             href={`/special-packages?id=${pkg.id}`}
-            className="block border rounded-lg p-4 hover:shadow-lg"
+            className="block border border-gray-700 bg-gray-900 rounded-lg p-4 hover:shadow-lg transition-shadow"
           >
-            <h2 className="text-xl font-semibold mb-2">{pkg.title}</h2>
-            <p>{pkg.description}</p>
+            <h2 className="text-xl font-semibold mb-2 text-yellow-400">{pkg.title}</h2>
+            <p className="text-gray-300">{pkg.description}</p>
           </a>
         ))}
       </div>
     </div>
+  );
+}
+
+export default function SpecialPackagesPage() {
+  return (
+    <Suspense fallback={<div className="p-10 text-white">Loading...</div>}>
+      <PackageDetails />
+    </Suspense>
   );
 }

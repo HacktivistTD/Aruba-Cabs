@@ -53,6 +53,8 @@ export default function HomePage() {
       >
         {/* Background with Parallax Effect */}
         <div className="absolute inset-0 z-0">
+        
+  
           <motion.div
             initial={{ scale: 1.1, opacity: 0 }}
             animate={{ scale: 1, opacity: 0.3 }}
@@ -63,7 +65,7 @@ export default function HomePage() {
             }}
           />
           {/* Gradient Overlay */}
-          <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/30 to-black/60" />
+          <div className="absolute inset-0 bg-gradient-to-b from-black via-black/30 to-black" />
         </div>
 
         {/* Hero Content */}
@@ -74,14 +76,14 @@ export default function HomePage() {
             transition={{ duration: 1, ease: 'easeOut' }}
             className="mb-6"
           >
-            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold text-white leading-tight">
+            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white leading-tight">
               Explore{' '}
-              <span className="bg-gradient-to-r from-yellow-400 to-orange-500 bg-clip-text text-transparent">
+              <span className="text-white">
                 Sri Lanka
               </span>
               <br />
               <span className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-light text-blue-100">
-                with Aruba Cab Services
+                with <span className="bg-gradient-to-r from-yellow-400 to-orange-500 bg-clip-text text-transparent"> Aruba Cab Services</span>
               </span>
             </h1>
           </motion.div>
@@ -93,7 +95,7 @@ export default function HomePage() {
             className="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-100 mb-8 sm:mb-10 max-w-4xl mx-auto leading-relaxed px-4"
           >
             Discover the pearl of the Indian Ocean with reliable, comfortable, and personalized cab services. 
-            From ancient temples to pristine beaches, we'll take you there in style and comfort.
+            From ancient temples to pristine beaches, we&apos;ll take you there in style and comfort.
           </motion.p>
 
           <motion.div
@@ -112,7 +114,7 @@ export default function HomePage() {
                 whileTap={{ scale: 0.95 }}
                 className="w-full sm:w-auto bg-gradient-to-r from-yellow-500 to-orange-500 text-black text-base sm:text-lg font-bold px-8 sm:px-12 py-4 sm:py-5 rounded-full shadow-2xl hover:shadow-yellow-500/25 transition-all duration-300 border-2 border-yellow-400/20"
               >
-                🚗 Book Your Adventure
+                 Book Your Adventure
               </motion.button>
             </a>
             <motion.button
@@ -120,7 +122,7 @@ export default function HomePage() {
               whileTap={{ scale: 0.95 }}
               className="w-full sm:w-auto bg-transparent border-2 border-white/30 backdrop-blur-sm text-white font-semibold px-8 sm:px-12 py-4 sm:py-5 rounded-full hover:bg-white/10 transition-all duration-300"
             >
-              💬 Get Free Quote
+               Get Free Quote
             </motion.button>
           </motion.div>
 
@@ -132,7 +134,7 @@ export default function HomePage() {
             className="mt-12 sm:mt-16 grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-8 max-w-4xl mx-auto px-4"
           >
             {[
-              { number: '500+', label: 'Happy Customers' },
+              { number: '1000+', label: 'Happy Customers' },
               { number: '24/7', label: 'Service Available' },
               { number: '50+', label: 'Destinations Covered' },
               { number: '5★', label: 'Average Rating' },
@@ -224,8 +226,8 @@ export default function HomePage() {
                 <div className={`absolute inset-0 bg-gradient-to-r ${feature.gradient} opacity-0 group-hover:opacity-20 rounded-2xl transition-opacity duration-300`} />
                 
                 <div className="relative z-10">
-                  <div className="text-4xl sm:text-5xl mb-4 sm:mb-6">{feature.icon}</div>
-                  <h3 className="text-xl sm:text-2xl font-bold text-white mb-3 sm:mb-4 group-hover:text-yellow-400 transition-colors">
+                  <div className="text-4xl sm:text-5xl mb-4 sm:mb-6 text-center">{feature.icon}</div>
+                  <h3 className="text-xl sm:text-2xl font-bold text-white mb-3 sm:mb-4 group-hover:text-yellow-400 transition-colors text-center">
                     {feature.title}
                   </h3>
                   <p className="text-gray-300 leading-relaxed text-sm sm:text-base group-hover:text-gray-200 transition-colors">
@@ -237,6 +239,9 @@ export default function HomePage() {
           </div>
         </div>
       </motion.section>
+
+          {/* Special Packages Component */}
+      <SpecialPackages />
 
       {/* Popular Destinations */}
       <motion.section
@@ -255,7 +260,7 @@ export default function HomePage() {
               </span>
             </h2>
             <p className="text-lg sm:text-xl text-gray-300 max-w-3xl mx-auto">
-              Discover Sri Lanka's most breathtaking locations with our expert guides
+              Discover Sri Lanka&apos;s most breathtaking locations with our expert guides
             </p>
           </motion.div>
 
@@ -532,8 +537,7 @@ export default function HomePage() {
         </div>
       </motion.section>
 
-      {/* Special Packages Component */}
-      <SpecialPackages />
+  
     </div>
   );
 }

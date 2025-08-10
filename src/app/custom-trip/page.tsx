@@ -218,7 +218,7 @@ export default function AIBasedTripPlanner() {
                       🎯 What interests you most?
                     </label>
                     <p className="text-gray-300 text-sm sm:text-base mb-4">
-                      Try: "beach and wildlife", "mountains and tea", "cultural sites", "adventure activities"
+                      Try: &quot;beach and wildlife&quot;, &quot;mountains and tea&quot;, &quot;cultural sites&quot;, &quot;adventure activities&quot;
                     </p>
                     
                     <div className="relative">
