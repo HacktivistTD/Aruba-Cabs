@@ -2,15 +2,15 @@
 
 import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
-import { X, MapPin, Hotel, Calendar, Users, Star, ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react';
+import { X, MapPin, Hotel, Calendar, Users, Star, ArrowRight, ChevronLeft, ChevronRight, Clock, Mail, Phone, User, MessageSquare, Car, MapPinIcon } from 'lucide-react';
 
 const packages = [
   {
     id: "secret-shores",
-    title: "Secret Shores of Sri Lanka",
-    subtitle: "Hidden Paradise Awaits",
+    title: "From Our Heart to Yours: The Ultimate Sri Lanka Adventure",
+    subtitle: "Explore timeless beauty, hidden gems, and rich culture — all crafted with care to create memories that last a lifetime",
     description: "Discover the untouched beaches and hidden coves of Sri Lanka&apos;s stunning coastline. Perfect for travelers seeking tranquility away from the crowds.",
-    longDescription: "Embark on a journey to Sri Lanka's most secluded and breathtaking coastal destinations. This exclusive package takes you beyond the typical tourist trails to discover pristine beaches, crystal-clear lagoons, and untouched natural beauty. Experience the authentic charm of coastal Sri Lanka while enjoying luxury accommodations and personalized service.",
+    longDescription: "Embark on a journey to Sri Lanka&apos;s most secluded and breathtaking coastal destinations. This exclusive package takes you beyond the typical tourist trails to discover pristine beaches, crystal-clear lagoons, and untouched natural beauty. Experience the authentic charm of coastal Sri Lanka while enjoying luxury accommodations and personalized service.",
     images: [
       "https://lp-cms-production.imgix.net/2019-06/f0275838e5f1a765d23f3d1835d4c541-arugam-bay-beach.jpg?w=1920&h=640&fit=crop",
       "https://cdn.getyourguide.com/image/format=auto,fit=contain,gravity=auto,quality=60,width=1440,height=650,dpr=1/tour_img/61d0a114e3cfa.jpeg",
@@ -22,14 +22,66 @@ const packages = [
     groupSize: "2-8 People",
     rating: 4.9,
     price: "LKR 45,000",
-    gradient: "from-blue-500 via-cyan-500 to-teal-500"
+    gradient: "from-blue-500 via-cyan-500 to-teal-500",
+    itinerary: [
+      {
+        day: 1,
+        title: "Arrival & Nilaveli Beach",
+        activities: [
+          "Airport pickup and welcome drink",
+          "Drive to Nilaveli Beach (3 hours)",
+          "Check-in at Nilaveli Resort",
+          "Sunset beach walk and dinner"
+        ]
+      },
+      {
+        day: 2,
+        title: "Nilaveli Exploration",
+        activities: [
+          "Morning dolphin watching tour",
+          "Visit to Pigeon Island National Park",
+          "Snorkeling and coral reef exploration",
+          "Beach relaxation and spa treatment"
+        ]
+      },
+      {
+        day: 3,
+        title: "Kalpitiya Adventure",
+        activities: [
+          "Travel to Kalpitiya Peninsula",
+          "Kite surfing lessons (optional)",
+          "Lagoon boat safari",
+          "Check-in at Lagoon Villa"
+        ]
+      },
+      {
+        day: 4,
+        title: "Hiriketiya Discovery",
+        activities: [
+          "Morning drive to Hiriketiya Bay",
+          "Surfing lessons for beginners",
+          "Explore local fishing village",
+          "Sunset cocktails at beach bar"
+        ]
+      },
+      {
+        day: 5,
+        title: "Departure",
+        activities: [
+          "Final beach morning",
+          "Checkout and departure preparation",
+          "Drive to Colombo/Airport",
+          "Farewell and departure"
+        ]
+      }
+    ]
   },
   {
     id: "yala-wildlife-safari",
     title: "Wildlife Safari at Yala",
     subtitle: "Where Wild Meets Wonder",
     description: "Embark on an unforgettable wildlife safari at Yala National Park. Spot leopards, elephants, and exotic birds in their natural habitat.",
-    longDescription: "Experience the thrill of encountering Sri Lanka's magnificent wildlife in their natural habitat. Yala National Park, famous for having the highest density of leopards in the world, offers unparalleled safari experiences. Our expert guides will take you deep into the wilderness where every moment brings new discoveries.",
+    longDescription: "Experience the thrill of encountering Sri Lanka&apos;s magnificent wildlife in their natural habitat. Yala National Park, famous for having the highest density of leopards in the world, offers unparalleled safari experiences. Our expert guides will take you deep into the wilderness where every moment brings new discoveries.",
     images: [
       "https://lk.lakpura.com/cdn/shop/files/LK50C01000-02-E-1280-720_89288ce2-b128-4667-a572-ba5c0c55052a.jpg?v=1705488904&width=1445",
       "https://lp-cms-production.imgix.net/2019-06/f0275838e5f1a765d23f3d1835d4c541-arugam-bay-beach.jpg?w=1920&h=640&fit=crop",
@@ -41,13 +93,55 @@ const packages = [
     groupSize: "2-12 People",
     rating: 4.8,
     price: "LKR 38,000",
-    gradient: "from-orange-500 via-amber-500 to-yellow-500"
+    gradient: "from-orange-500 via-amber-500 to-yellow-500",
+    itinerary: [
+      {
+        day: 1,
+        title: "Arrival & Safari Preparation",
+        activities: [
+          "Pickup from hotel/airport",
+          "Drive to Yala region (4 hours)",
+          "Check-in at Safari Camp",
+          "Evening safari briefing and equipment setup"
+        ]
+      },
+      {
+        day: 2,
+        title: "Full Day Yala Safari",
+        activities: [
+          "Early morning safari (5:30 AM departure)",
+          "Leopard tracking with expert guides",
+          "Wildlife photography session",
+          "Afternoon safari in different park zones"
+        ]
+      },
+      {
+        day: 3,
+        title: "Kataragama & Cultural Experience",
+        activities: [
+          "Visit sacred Kataragama Temple",
+          "Cultural ceremony participation",
+          "Local village tour and lunch",
+          "Evening wildlife observation at watering holes"
+        ]
+      },
+      {
+        day: 4,
+        title: "Bundala & Departure",
+        activities: [
+          "Morning visit to Bundala National Park",
+          "Bird watching and wetland exploration",
+          "Final wildlife photography",
+          "Return journey to Colombo"
+        ]
+      }
+    ]
   },
   {
     id: "cultural-heritage",
     title: "Ancient Kingdoms Heritage",
     subtitle: "Journey Through Time",
-    description: "Explore the magnificent ancient kingdoms and UNESCO World Heritage sites that tell the story of Sri Lanka's rich cultural heritage.",
+    description: "Explore the magnificent ancient kingdoms and UNESCO World Heritage sites that tell the story of Sri Lanka&apos;s rich cultural heritage.",
     longDescription: "Step back in time and discover the glorious past of Sri Lankan civilization. Visit ancient capitals, marvel at architectural masterpieces, and uncover the secrets of bygone eras. This comprehensive cultural tour combines history, spirituality, and artistic heritage in one unforgettable journey.",
     images: [
       "https://encrypted-tbn1.gstatic.com/licensed-image?q=tbn:ANd9GcQD2UJTpFwFB836aF79g2ig-xZXP31cXH0rFmpzang1uLBiZw1YKzrEL7-v0eBS2fUoOWA8azIaCb_psoiQD_fDtbeWZ4ahZ3n-hcbMtQ",
@@ -60,7 +154,69 @@ const packages = [
     groupSize: "2-10 People",
     rating: 4.7,
     price: "LKR 52,000",
-    gradient: "from-purple-500 via-pink-500 to-rose-500"
+    gradient: "from-purple-500 via-pink-500 to-rose-500",
+    itinerary: [
+      {
+        day: 1,
+        title: "Arrival & Dambulla",
+        activities: [
+          "Airport pickup and welcome ceremony",
+          "Drive to Dambulla region",
+          "Check-in at Heritage Resort",
+          "Evening visit to local spice garden"
+        ]
+      },
+      {
+        day: 2,
+        title: "Dambulla Cave Temple",
+        activities: [
+          "Early morning visit to Dambulla Cave Temple",
+          "Exploration of ancient Buddhist murals",
+          "Local craftsmen village tour",
+          "Traditional Sri Lankan cooking class"
+        ]
+      },
+      {
+        day: 3,
+        title: "Sigiriya Rock Fortress",
+        activities: [
+          "Sunrise climb of Sigiriya Rock",
+          "Explore ancient palace ruins",
+          "Visit Sigiriya Museum",
+          "Elephant safari at Minneriya National Park"
+        ]
+      },
+      {
+        day: 4,
+        title: "Polonnaruwa Ancient City",
+        activities: [
+          "Travel to Polonnaruwa",
+          "Bicycle tour of ancient ruins",
+          "Visit Gal Vihara rock sculptures",
+          "Explore Royal Palace complex"
+        ]
+      },
+      {
+        day: 5,
+        title: "Anuradhapura Sacred City",
+        activities: [
+          "Journey to Anuradhapura",
+          "Visit sacred Bodhi Tree",
+          "Explore ancient stupas and monasteries",
+          "Participate in evening blessing ceremony"
+        ]
+      },
+      {
+        day: 6,
+        title: "Cultural Immersion & Departure",
+        activities: [
+          "Visit local artisan workshops",
+          "Traditional mask carving demonstration",
+          "Farewell lunch with cultural performance",
+          "Return to Colombo/Airport"
+        ]
+      }
+    ]
   }
 ];
 
@@ -70,6 +226,19 @@ export default function AdvancedSpecialPackages() {
   const [selectedPackage, setSelectedPackage] = useState<PackageType | null>(null);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [imageLoading, setImageLoading] = useState(false);
+  const [showBookingForm, setShowBookingForm] = useState(false);
+  const [bookingType, setBookingType] = useState<'book' | 'quote'>('book');
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    whatsapp: '',
+    country: '',
+    startDate: '',
+    endDate: '',
+    vehicleType: 'budget-car',
+    notes: '',
+    questions: ''
+  });
   const modalRef = useRef(null);
 
   // Handle image navigation
@@ -119,6 +288,76 @@ export default function AdvancedSpecialPackages() {
   const closeModal = () => {
     setSelectedPackage(null);
     setCurrentImageIndex(0);
+    setShowBookingForm(false);
+    setFormData({
+      name: '',
+      email: '',
+      whatsapp: '',
+      country: '',
+      startDate: '',
+      endDate: '',
+      vehicleType: 'budget-car',
+      notes: '',
+      questions: ''
+    });
+  };
+
+  const handleBookingClick = (type: 'book' | 'quote') => {
+    setBookingType(type);
+    setShowBookingForm(true);
+  };
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }));
+  };
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    
+    if (!selectedPackage) return;
+
+    const subject = `${bookingType === 'book' ? 'Package Booking' : 'Quote Request'}: ${selectedPackage.title}`;
+    
+    const emailBody = `
+Package Details:
+- Package: ${selectedPackage.title}
+- Duration: ${selectedPackage.duration}
+- Price: ${selectedPackage.price}
+- Request Type: ${bookingType === 'book' ? 'Booking' : 'Quote Request'}
+
+Customer Information:
+- Name: ${formData.name}
+- Email: ${formData.email}
+- WhatsApp: ${formData.whatsapp}
+- Country: ${formData.country}
+
+Travel Details:
+- Start Date: ${formData.startDate}
+- End Date: ${formData.endDate}
+- Vehicle Type: ${formData.vehicleType.replace('-', ' ').toUpperCase()}
+
+Additional Information:
+- Notes: ${formData.notes || 'No additional notes'}
+- Questions: ${formData.questions || 'No questions'}
+
+Places to Visit: ${selectedPackage.places.join(', ')}
+Accommodations: ${selectedPackage.nightStops.join(', ')}
+    `.trim();
+
+    const mailtoLink = `mailto:arubacabs@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(emailBody)}`;
+    
+    // Open email client
+    window.location.href = mailtoLink;
+    
+    // Close the form after sending
+    setShowBookingForm(false);
+    
+    // Show success message (you can customize this)
+    alert(`Your ${bookingType === 'book' ? 'booking request' : 'quote request'} has been prepared! Please send the email that just opened.`);
   };
 
   return (
@@ -370,10 +609,16 @@ export default function AdvancedSpecialPackages() {
                     </div>
                     
                     <div className="space-y-3">
-                      <button className="w-full bg-gradient-to-r from-blue-500 to-purple-600 text-white py-3 rounded-lg font-semibold hover:shadow-lg hover:shadow-blue-500/25 transform hover:scale-105 transition-all duration-300">
+                      <button 
+                        onClick={() => handleBookingClick('book')}
+                        className="w-full bg-gradient-to-r from-blue-500 to-purple-600 text-white py-3 rounded-lg font-semibold hover:shadow-lg hover:shadow-blue-500/25 transform hover:scale-105 transition-all duration-300"
+                      >
                         Book This Package
                       </button>
-                      <button className="w-full border border-gray-600 text-gray-300 hover:text-white hover:border-gray-500 py-3 rounded-lg font-semibold transition-all duration-300">
+                      <button 
+                        onClick={() => handleBookingClick('quote')}
+                        className="w-full border border-gray-600 text-gray-300 hover:text-white hover:border-gray-500 py-3 rounded-lg font-semibold transition-all duration-300"
+                      >
                         Request Custom Quote
                       </button>
                     </div>
@@ -413,8 +658,39 @@ export default function AdvancedSpecialPackages() {
                 </div>
               </div>
 
-              {/* Description */}
+              {/* Itinerary Section */}
               <div className="px-6 pb-6">
+                <div className="bg-gray-800/50 rounded-xl p-6 backdrop-blur-sm mb-6">
+                  <h3 className="text-2xl font-bold text-white mb-6 flex items-center gap-2">
+                    <Clock className="w-6 h-6 text-purple-400" />
+                    Day-by-Day Itinerary
+                  </h3>
+                  <div className="space-y-6">
+                    {selectedPackage.itinerary.map((day, index) => (
+                      <div key={index} className="border-l-4 border-purple-400 pl-6 relative">
+                        <div className="absolute left-[-10px] top-2 w-4 h-4 bg-purple-400 rounded-full"></div>
+                        <div className="bg-gray-700/30 rounded-lg p-4">
+                          <h4 className="text-lg font-bold text-white mb-3 flex items-center gap-2">
+                            <span className="bg-purple-400 text-gray-900 px-2 py-1 rounded-full text-sm font-bold">
+                              Day {day.day}
+                            </span>
+                            {day.title}
+                          </h4>
+                          <div className="space-y-2">
+                            {day.activities.map((activity, actIndex) => (
+                              <div key={actIndex} className="flex items-start gap-3 text-gray-300">
+                                <div className="w-1.5 h-1.5 bg-gray-400 rounded-full mt-2 flex-shrink-0"></div>
+                                <span className="leading-relaxed">{activity}</span>
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Description */}
                 <div className="bg-gray-800/50 rounded-xl p-6 backdrop-blur-sm">
                   <h3 className="text-2xl font-bold text-white mb-4">About This Experience</h3>
                   <p className="text-gray-300 leading-relaxed text-lg">
@@ -422,6 +698,226 @@ export default function AdvancedSpecialPackages() {
                   </p>
                 </div>
               </div>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Booking/Quote Form Modal */}
+      {showBookingForm && selectedPackage && (
+        <div className="fixed inset-0 bg-black/95 backdrop-blur-sm z-50 flex items-center justify-center p-4 animate-fadeIn">
+          <div className="bg-gradient-to-br from-gray-900 to-gray-800 rounded-2xl max-w-2xl w-full max-h-[90vh] overflow-hidden shadow-2xl border border-gray-700 animate-scaleIn">
+            {/* Form Header */}
+            <div className="flex items-center justify-between p-6 border-b border-gray-700">
+              <div>
+                <h2 className="text-2xl font-bold text-white mb-1">
+                  {bookingType === 'book' ? 'Book Package' : 'Request Quote'}
+                </h2>
+                <p className="text-gray-400">{selectedPackage.title}</p>
+              </div>
+              <button
+                onClick={() => setShowBookingForm(false)}
+                className="text-gray-400 hover:text-white transition-colors duration-200 p-2 hover:bg-gray-800 rounded-full"
+              >
+                <X className="w-6 h-6" />
+              </button>
+            </div>
+
+            {/* Form Content */}
+            <div className="overflow-y-auto max-h-[calc(90vh-140px)] custom-scrollbar p-6">
+              <form onSubmit={handleSubmit} className="space-y-6">
+                {/* Personal Information */}
+                <div className="space-y-4">
+                  <h3 className="text-lg font-semibold text-white flex items-center gap-2">
+                    <User className="w-5 h-5 text-blue-400" />
+                    Personal Information
+                  </h3>
+                  
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                      <label className="block text-gray-300 text-sm font-medium mb-2">
+                        Full Name *
+                      </label>
+                      <input
+                        type="text"
+                        name="name"
+                        value={formData.name}
+                        onChange={handleInputChange}
+                        required
+                        className="w-full px-4 py-3 bg-gray-700/50 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
+                        placeholder="Enter your full name"
+                      />
+                    </div>
+                    
+                    <div>
+                      <label className="block text-gray-300 text-sm font-medium mb-2">
+                        Email Address *
+                      </label>
+                      <input
+                        type="email"
+                        name="email"
+                        value={formData.email}
+                        onChange={handleInputChange}
+                        required
+                        className="w-full px-4 py-3 bg-gray-700/50 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
+                        placeholder="Enter your email"
+                      />
+                    </div>
+                  </div>
+
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                      <label className="block text-gray-300 text-sm font-medium mb-2">
+                        WhatsApp Number *
+                      </label>
+                      <input
+                        type="tel"
+                        name="whatsapp"
+                        value={formData.whatsapp}
+                        onChange={handleInputChange}
+                        required
+                        className="w-full px-4 py-3 bg-gray-700/50 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
+                        placeholder="+1 234 567 8900"
+                      />
+                    </div>
+                    
+                    <div>
+                      <label className="block text-gray-300 text-sm font-medium mb-2">
+                        Country *
+                      </label>
+                      <input
+                        type="text"
+                        name="country"
+                        value={formData.country}
+                        onChange={handleInputChange}
+                        required
+                        className="w-full px-4 py-3 bg-gray-700/50 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
+                        placeholder="Enter your country"
+                      />
+                    </div>
+                  </div>
+                </div>
+
+                {/* Travel Details */}
+                <div className="space-y-4">
+                  <h3 className="text-lg font-semibold text-white flex items-center gap-2">
+                    <Calendar className="w-5 h-5 text-green-400" />
+                    Travel Details
+                  </h3>
+                  
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                      <label className="block text-gray-300 text-sm font-medium mb-2">
+                        Start Date *
+                      </label>
+                      <input
+                        type="date"
+                        name="startDate"
+                        value={formData.startDate}
+                        onChange={handleInputChange}
+                        required
+                        className="w-full px-4 py-3 bg-gray-700/50 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
+                      />
+                    </div>
+                    
+                    <div>
+                      <label className="block text-gray-300 text-sm font-medium mb-2">
+                        End Date *
+                      </label>
+                      <input
+                        type="date"
+                        name="endDate"
+                        value={formData.endDate}
+                        onChange={handleInputChange}
+                        required
+                        className="w-full px-4 py-3 bg-gray-700/50 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
+                      />
+                    </div>
+                  </div>
+
+                  <div>
+                    <label className="block text-gray-300 text-sm font-medium mb-2">
+                      Vehicle Type *
+                    </label>
+                    <select
+                      name="vehicleType"
+                      value={formData.vehicleType}
+                      onChange={handleInputChange}
+                      required
+                      className="w-full px-4 py-3 bg-gray-700/50 border border-gray-600 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
+                    >
+                      <option value="budget-car">Budget Car</option>
+                      <option value="sedan-car">Sedan Car</option>
+                      <option value="van">Van</option>
+                      <option value="bus">Bus</option>
+                    </select>
+                  </div>
+                </div>
+
+                {/* Additional Information */}
+                <div className="space-y-4">
+                  <h3 className="text-lg font-semibold text-white flex items-center gap-2">
+                    <MessageSquare className="w-5 h-5 text-purple-400" />
+                    Additional Information
+                  </h3>
+                  
+                  <div>
+                    <label className="block text-gray-300 text-sm font-medium mb-2">
+                      Special Notes or Requirements
+                    </label>
+                    <textarea
+                      name="notes"
+                      value={formData.notes}
+                      onChange={handleInputChange}
+                      rows={3}
+                      className="w-full px-4 py-3 bg-gray-700/50 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 resize-none"
+                      placeholder="Any special requirements, dietary restrictions, accessibility needs, etc."
+                    />
+                  </div>
+                  
+                  <div>
+                    <label className="block text-gray-300 text-sm font-medium mb-2">
+                      Questions or Comments
+                    </label>
+                    <textarea
+                      name="questions"
+                      value={formData.questions}
+                      onChange={handleInputChange}
+                      rows={3}
+                      className="w-full px-4 py-3 bg-gray-700/50 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 resize-none"
+                      placeholder="Any questions about the package or additional information you'd like to share..."
+                    />
+                  </div>
+                </div>
+
+                {/* Package Summary */}
+                <div className="bg-gray-700/30 rounded-lg p-4">
+                  <h4 className="text-white font-semibold mb-2">Package Summary</h4>
+                  <div className="text-gray-300 text-sm space-y-1">
+                    <p><strong>Package:</strong> {selectedPackage.title}</p>
+                    <p><strong>Duration:</strong> {selectedPackage.duration}</p>
+                    <p><strong>Price:</strong> {selectedPackage.price} per person</p>
+                    <p><strong>Group Size:</strong> {selectedPackage.groupSize}</p>
+                  </div>
+                </div>
+
+                {/* Submit Button */}
+                <div className="flex gap-4 pt-6">
+                  <button
+                    type="button"
+                    onClick={() => setShowBookingForm(false)}
+                    className="flex-1 px-6 py-3 border border-gray-600 text-gray-300 rounded-lg hover:text-white hover:border-gray-500 transition-all duration-200"
+                  >
+                    Cancel
+                  </button>
+                  <button
+                    type="submit"
+                    className="flex-1 px-6 py-3 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-lg font-semibold hover:shadow-lg hover:shadow-blue-500/25 transform hover:scale-105 transition-all duration-300"
+                  >
+                    {bookingType === 'book' ? 'Send Booking Request' : 'Send Quote Request'}
+                  </button>
+                </div>
+              </form>
             </div>
           </div>
         </div>
