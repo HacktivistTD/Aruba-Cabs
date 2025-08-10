@@ -5,12 +5,12 @@ export default function Footer() {
   const currentYear = new Date().getFullYear();
 
   const socialLinks = [
-    { name: 'Facebook', href: 'https://facebook.com/arubacabs', icon: FaFacebookF, color: 'hover:text-blue-500' },
+    { name: 'Facebook', href: 'https://www.facebook.com/profile.php?id=61578136073686', icon: FaFacebookF, color: 'hover:text-blue-500' },
     { name: 'Instagram', href: 'https://instagram.com/arubacabs', icon: FaInstagram, color: 'hover:text-pink-500' },
-    { name: 'WhatsApp', href: 'https://wa.me/94771234567', icon: FaWhatsapp, color: 'hover:text-green-500' },
-    { name: 'TikTok', href: 'https://tiktok.com/@arubacabs', icon: FaTiktok, color: 'hover:text-white' },
-    { name: 'YouTube', href: 'https://youtube.com/c/arubacabs', icon: FaYoutube, color: 'hover:text-red-600' },
-    { name: 'Pinterest', href: 'https://pinterest.com/arubacabs', icon: FaPinterest, color: 'hover:text-red-700' },
+    { name: 'WhatsApp', href: 'https://wa.me/94777656999', icon: FaWhatsapp, color: 'hover:text-green-500' },
+    { name: 'TikTok', href: 'https://www.tiktok.com/@aruba_cabs', icon: FaTiktok, color: 'hover:text-white' },
+    { name: 'YouTube', href: 'https://www.youtube.com/@aruba_cabs', icon: FaYoutube, color: 'hover:text-red-600' },
+    { name: 'Pinterest', href: 'https://www.pinterest.com/aruba_cabs/', icon: FaPinterest, color: 'hover:text-red-700' },
   ];
 
   return (
