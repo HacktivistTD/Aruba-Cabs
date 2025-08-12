@@ -6,7 +6,7 @@ import Image from 'next/image';
 import SpecialPackages from '@/components/SpecialPackages';
 
 export default function HomePage() {
-  const [isLoaded, setIsLoaded] = useState(false);
+  const [, setIsLoaded] = useState(false);
 
   useEffect(() => {
     setIsLoaded(true);
