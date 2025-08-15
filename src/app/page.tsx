@@ -221,17 +221,17 @@ export default function HomePage() {
                   scale: 1.02,
                   transition: { duration: 0.3 }
                 }}
-                className="group relative bg-white/50 backdrop-blur-sm border border-white rounded-2xl p-6 sm:p-8 hover:bg-white/10 transition-all duration-300 cursor-pointer"
+                className="group relative bg-gradient-to-br from-gray-800 to-gray-900 rounded-3xl overflow-hidden shadow-2xl border border-gray-700 hover:border-gray-500 transition-all duration-500"
               >
                 {/* Gradient Border Effect */}
                 <div className={`absolute inset-0 bg-gradient-to-r ${feature.gradient} opacity-0 group-hover:opacity-20 rounded-2xl transition-opacity duration-300`} />
                 
                 <div className="relative z-10">
                   <div className="text-4xl sm:text-5xl mb-4 sm:mb-6 text-center">{feature.icon}</div>
-                  <h3 className="text-xl sm:text-2xl font-bold text-white mb-3 sm:mb-4 group-hover:text-green-400 transition-colors text-center">
+                  <h3 className="text-xl sm:text-2xl font-bold text-yellow-400 mb-3 sm:mb-4 group-hover:text-green-400 transition-colors text-center">
                     {feature.title}
                   </h3>
-                  <p className="text-gray-300 leading-relaxed text-sm sm:text-base group-hover:text-gray-200 transition-colors">
+                  <p className="text-gray-300 leading-relaxed text-sm sm:text-base group-hover:text-gray-200 transition-colors text-center">
                     {feature.desc}
                   </p>
                 </div>
@@ -261,13 +261,13 @@ export default function HomePage() {
             transition={{ duration: 0.8 }}
             className="text-center mb-12 sm:mb-16"
           >
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-4">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-black mb-4">
               What Our{' '}
               <span className="bg-gradient-to-r from-green-400 to-yellow-500 bg-clip-text text-transparent">
                 Travelers Say
               </span>
             </h2>
-            <p className="text-lg sm:text-xl text-gray-300">
+            <p className="text-lg sm:text-xl text-green-600">
               Real experiences from our valued customers
             </p>
           </motion.div>
@@ -315,14 +315,14 @@ export default function HomePage() {
                   ))}
                 </div>
 
-                <p className="italic text-gray-200 mb-6 text-sm sm:text-base leading-relaxed group-hover:text-white transition-colors">
+                <p className="italic text-black mb-6 text-sm sm:text-base leading-relaxed group-hover:text-black transition-colors">
                   &quot;{testimonial.text}&quot;
                 </p>
 
                 <div className="flex items-center">
                   <div className="text-3xl mr-4">{testimonial.avatar}</div>
                   <div>
-                    <div className="font-bold text-white text-base sm:text-lg group-hover:text-green-400 transition-colors">
+                    <div className="font-bold text-black text-base sm:text-lg group-hover:text-green-400 transition-colors">
                       {testimonial.name}
                     </div>
                     <div className="text-sm text-gray-400 group-hover:text-gray-300 transition-colors">
@@ -368,7 +368,7 @@ export default function HomePage() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3, duration: 0.8 }}
-            className="text-lg sm:text-xl lg:text-2xl text-black mb-8 sm:mb-12 max-w-4xl mx-auto leading-relaxed"
+            className="text-lg sm:text-xl lg:text-xl text-black mb-8 sm:mb-12 max-w-4xl mx-auto leading-relaxed"
           >
             Book your premium cab experience today and let us handle the journey — so you can focus on creating unforgettable memories in paradise.
           </motion.p>
@@ -395,7 +395,7 @@ export default function HomePage() {
               href="tel:+94771234567"
               whileHover={{ scale: 1.05, y: -2 }}
               whileTap={{ scale: 0.95 }}
-              className="w-full sm:w-auto inline-block bg-transparent border-2 border-green-400/50 backdrop-blur-sm text-white font-semibold text-base sm:text-lg px-8 sm:px-12 py-4 sm:py-5 rounded-full hover:bg-green-400/10 hover:border-green-400 transition-all duration-300"
+              className="w-full sm:w-auto inline-block bg-transparent border-2 border-green-400/50 backdrop-blur-sm text-black font-semibold text-base sm:text-lg px-8 sm:px-12 py-4 sm:py-5 rounded-full hover:bg-green-400/10 hover:border-green-400 transition-all duration-300"
             >
               📱 Call Directly
             </motion.a>
@@ -406,15 +406,15 @@ export default function HomePage() {
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             transition={{ delay: 0.9, duration: 0.8 }}
-            className="mt-8 sm:mt-12 flex flex-col sm:flex-row justify-center items-center gap-4 sm:gap-8 text-gray-300"
+            className="mt-8 sm:mt-12 flex flex-col sm:flex-row justify-center items-center gap-4 sm:gap-8 text-black"
           >
             <div className="flex items-center gap-2">
               <span className="text-green-400">📧</span>
-              <span className="text-sm sm:text-base">info@arubacab.lk</span>
+              <span className="text-sm sm:text-base">arubacabs@gmail.com</span>
             </div>
             <div className="flex items-center gap-2">
               <span className="text-green-400">📱</span>
-              <span className="text-sm sm:text-base">+94 77 123 4567</span>
+              <span className="text-sm sm:text-base">+94 77 7656 999</span>
             </div>
             <div className="flex items-center gap-2">
               <span className="text-green-400">⏰</span>

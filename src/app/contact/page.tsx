@@ -1,8 +1,5 @@
 'use client';
 
-
-
-
 import { useState, useRef } from 'react';
 import { motion, useAnimate, useInView } from 'framer-motion';
 
@@ -10,6 +7,7 @@ export default function ContactPage() {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [contactNumber, setContactNumber] = useState('');
+  const [country, setCountry] = useState('');
   const [message, setMessage] = useState('');
   const [submitted, setSubmitted] = useState(false);
 
@@ -18,20 +16,46 @@ export default function ContactPage() {
   const isInView = useInView(infoRef, { once: true, margin: '-100px' });
   const [scope, animate] = useAnimate();
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setSubmitted(true);
+
+    try {
+      const res = await fetch('/api/send-email', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          type: 'contact', // change to 'package' or 'customTrip' if needed
+          name,
+          email,
+          contactNumber,
+          country,
+          message,
+        }),
+      });
+
+      const data = await res.json();
+      console.log(data);
+
+      if (res.ok) {
+        setName('');
+        setEmail('');
+        setContactNumber('');
+        setCountry('');
+        setMessage('');
+      } else {
+        alert('Failed to send message: ' + data.message);
+      }
+    } catch (err) {
+      console.error(err);
+      alert('Something went wrong.');
+    }
 
     const target = scope.current;
     if (target) {
       animate(target, { y: -10, opacity: 1 }, { duration: 0.4 });
       animate(target, { y: 0, opacity: 1 }, { duration: 0.3 });
     }
-
-    setName('');
-    setEmail('');
-    setContactNumber('');
-    setMessage('');
 
     setTimeout(() => setSubmitted(false), 5000);
   };
@@ -46,9 +70,7 @@ export default function ContactPage() {
           transition={{ duration: 0.8 }}
           className="text-center mb-12"
         >
-          <h1 className="text-4xl md:text-5xl font-extrabold text-gray-800 mb-4">
-            Get in Touch
-          </h1>
+          <h1 className="text-4xl md:text-5xl font-extrabold text-gray-800 mb-4">Get in Touch</h1>
           <p className="text-lg text-gray-600">
             We&apos;d love to hear from you! Send us a message and we&apos;ll respond shortly.
           </p>
@@ -64,6 +86,7 @@ export default function ContactPage() {
               onSubmit={handleSubmit}
               className="p-8 rounded-2xl shadow-xl border border-gray-100"
             >
+              {/* Full Name */}
               <div className="mb-6">
                 <label className="block text-sm font-semibold text-gray-700 mb-2">Full Name</label>
                 <input
@@ -72,10 +95,11 @@ export default function ContactPage() {
                   value={name}
                   onChange={(e) => setName(e.target.value)}
                   placeholder="John Doe"
-                  className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-4 focus:ring-blue-100 focus:border-blue-500 transition-all duration-300"
+                  className="w-full px-4 py-3 border text-black border-gray-300 rounded-xl focus:outline-none focus:ring-4 focus:ring-green-100 focus:border-green-500 transition-all duration-300"
                 />
               </div>
 
+              {/* Email */}
               <div className="mb-6">
                 <label className="block text-sm font-semibold text-gray-700 mb-2">Email Address</label>
                 <input
@@ -84,10 +108,11 @@ export default function ContactPage() {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="john@example.com"
-                  className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-4 focus:ring-blue-100 focus:border-blue-500 transition-all duration-300"
+                  className="w-full px-4 py-3 border text-black border-gray-300 rounded-xl focus:outline-none focus:ring-4 focus:ring-green-100 focus:border-green-500 transition-all duration-300"
                 />
               </div>
 
+              {/* Contact Number */}
               <div className="mb-6">
                 <label className="block text-sm font-semibold text-gray-700 mb-2">Contact Number</label>
                 <input
@@ -96,19 +121,33 @@ export default function ContactPage() {
                   value={contactNumber}
                   onChange={(e) => setContactNumber(e.target.value)}
                   placeholder="0761656983"
-                  className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-4 focus:ring-blue-100 focus:border-blue-500 transition-all duration-300"
+                  className="w-full px-4 py-3 border text-black border-gray-300 rounded-xl focus:outline-none focus:ring-4 focus:ring-green-100 focus:border-green-500 transition-all duration-300"
                 />
               </div>
 
+              {/* Country */}
               <div className="mb-6">
-                <label className="block text-sm font-semibold text-gray-700 mb-2">Your Message</label>
+                <label className="block text-sm font-semibold text-gray-700 mb-2">Country</label>
+                <input
+                  type="text"
+                  required
+                  value={country}
+                  onChange={(e) => setCountry(e.target.value)}
+                  placeholder="Sri Lanka"
+                  className="w-full px-4 py-3 border text-black border-gray-300 rounded-xl focus:outline-none focus:ring-4 focus:ring-green-100 focus:border-green-500 transition-all duration-300"
+                />
+              </div>
+
+              {/* Message */}
+              <div className="mb-6">
+                <label className="block text-sm font-semibold text-black mb-2">Your Message</label>
                 <textarea
                   required
                   value={message}
                   onChange={(e) => setMessage(e.target.value)}
                   placeholder="Tell us about your trip or inquiry..."
                   rows={5}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-4 focus:ring-blue-100 focus:border-blue-500 transition-all duration-300 resize-none"
+                  className="w-full px-4 py-3 text-black border border-gray-300 rounded-xl focus:outline-none focus:ring-4 focus:ring-green-100 focus:border-green-500 transition-all duration-300 resize-none"
                 />
               </div>
 
@@ -116,7 +155,7 @@ export default function ContactPage() {
                 whileHover={{ scale: 1.03 }}
                 whileTap={{ scale: 0.98 }}
                 type="submit"
-                className="w-full py-3 bg-gradient-to-r from-blue-600 to-teal-500 text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300"
+                className="w-full py-3 bg-gradient-to-r from-green-600 to-teal-500 text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300"
               >
                 📨 Send Message
               </motion.button>
@@ -137,37 +176,7 @@ export default function ContactPage() {
             </motion.div>
           )}
         </div>
-
-        {/* Contact Info */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ delay: 0.4, duration: 0.7 }}
-          ref={infoRef}
-          className="mt-12 grid grid-cols-1 sm:grid-cols-3 gap-4 text-sm"
-        >
-          {[
-            { title: '📞 Phone', detail: '+94 77 123 4567', color: 'blue' },
-            { title: '✉️ Email', detail: 'info@arubacab.lk', color: 'teal' },
-            { title: '📍 Location', detail: 'Colombo, Sri Lanka', color: 'green' },
-          ].map((item, idx) => (
-            <motion.div
-              key={idx}
-              initial={{ opacity: 0, y: 20 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ delay: 0.5 + idx * 0.2 }}
-              className={`p-4 rounded-xl bg-${item.color}-50 border border-${item.color}-100 text-${item.color}-700 shadow-sm hover:shadow transition-shadow`}
-            >
-              <div className="font-semibold">{item.title}</div>
-              <div className="text-gray-600 mt-1">{item.detail}</div>
-            </motion.div>
-          ))}
-        </motion.div>
       </div>
-
-      {/* Decorative Circles */}
-      <div className="fixed -top-20 -right-20 w-64 h-64 bg-blue-200 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-pulse"></div>
-      <div className="fixed -bottom-20 -left-20 w-64 h-64 bg-teal-200 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-pulse delay-1000"></div>
     </main>
   );
 }

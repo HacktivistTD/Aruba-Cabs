@@ -161,7 +161,7 @@ Accommodations: ${selectedPackage.nightStops.join(', ')}
           <h2 className="text-5xl md:text-6xl font-bold text-black mb-4">
             Special Packages
           </h2>
-          <p className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
+          <p className="text-xl text-green-800  max-w-3xl mx-auto leading-relaxed">
             Curated experiences that go beyond ordinary travel. Discover Sri Lanka&apos;s hidden gems with our exclusive, handcrafted adventures.
           </p>
         </div>
