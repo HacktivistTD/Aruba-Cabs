@@ -69,8 +69,8 @@ export default function Footer() {
     },
     {
       icon: FaEnvelope,
-      text: 'info@arubacabs.lk',
-      href: 'mailto:info@arubacabs.lk',
+      text: 'arubacabs@gmail.com',
+      href: 'mailto:arubacabs@gmail.com',
       label: 'Email us for inquiries and bookings'
     },
     {
@@ -93,7 +93,7 @@ export default function Footer() {
   ];
 
   return (
-    <footer className="bg-gradient-to-r from-gray-900 via-blue-900 to-gray-900 text-white pt-16 pb-8 px-6" role="contentinfo">
+    <footer className=" text-black pt-16 pb-8 px-6" role="contentinfo">
       <div className="max-w-7xl mx-auto">
         {/* Main Footer Content */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
@@ -101,13 +101,13 @@ export default function Footer() {
           {/* Company Info */}
           <div className="lg:col-span-1">
             <div className="mb-6">
-              <h3 className="text-2xl font-bold text-yellow-400 mb-2">
+              <h3 className="text-2xl font-bold text-green-400 mb-2">
                 Aruba Cab Services
               </h3>
-              <p className="text-gray-300 text-sm leading-relaxed mb-4">
+              <p className="text-gray-700 text-sm leading-relaxed mb-4">
                 Premium cab and tour services in Sri Lanka since 2015. Your trusted partner for exploring the pearl of the Indian Ocean with comfort, safety, and local expertise.
               </p>
-              <p className="text-yellow-300 font-medium text-sm">
+              <p className="text-green-300 font-medium text-sm">
                 &quot;Your Journey, Our Priority&quot;
               </p>
             </div>
@@ -115,7 +115,7 @@ export default function Footer() {
 
           {/* Quick Links */}
           <div>
-            <h4 className="text-lg font-semibold text-white mb-4 border-b border-yellow-400 pb-2 inline-block">
+            <h4 className="text-lg font-semibold text-black mb-4 border-b border-green-400 pb-2 inline-block">
               Quick Links
             </h4>
             <nav aria-label="Footer navigation">
@@ -124,10 +124,10 @@ export default function Footer() {
                   <li key={link.name}>
                     <Link 
                       href={link.href} 
-                      className="text-gray-300 hover:text-yellow-400 transition-colors duration-300 text-sm flex items-center group"
+                      className="text-gray-600 hover:text-green-400 transition-colors duration-300 text-sm flex items-center group"
                       title={link.description}
                     >
-                      <span className="w-2 h-2 bg-yellow-400 rounded-full mr-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
+                      <span className="w-2 h-2 bg-green-400 rounded-full mr-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
                       {link.name}
                     </Link>
                   </li>
@@ -138,12 +138,12 @@ export default function Footer() {
 
           {/* Services */}
           <div>
-            <h4 className="text-lg font-semibold text-white mb-4 border-b border-yellow-400 pb-2 inline-block">
+            <h4 className="text-lg font-semibold text-black mb-4 border-b border-green-400 pb-2 inline-block">
               Our Services
             </h4>
             <ul className="space-y-2">
               {services.map((service, index) => (
-                <li key={index} className="text-gray-300 text-sm hover:text-yellow-400 transition-colors duration-300 cursor-default">
+                <li key={index} className="text-gray-700 text-sm hover:text-green-400 transition-colors duration-300 cursor-default">
                   {service}
                 </li>
               ))}
@@ -152,7 +152,7 @@ export default function Footer() {
 
           {/* Contact Info */}
           <div>
-            <h4 className="text-lg font-semibold text-white mb-4 border-b border-yellow-400 pb-2 inline-block">
+            <h4 className="text-lg font-semibold text-black mb-4 border-b border-green-400 pb-2 inline-block">
               Contact Us
             </h4>
             <div className="space-y-4 mb-6">
@@ -160,14 +160,14 @@ export default function Footer() {
                 <a
                   key={index}
                   href={contact.href}
-                  className="flex items-center text-gray-300 hover:text-yellow-400 transition-colors duration-300 group"
+                  className="flex items-center text-gray-700 hover:text-green-400 transition-colors duration-300 group"
                   aria-label={contact.label}
                   {...(contact.href.startsWith('http') && { 
                     target: '_blank', 
                     rel: 'noopener noreferrer' 
                   })}
                 >
-                  <contact.icon className="mr-3 text-yellow-400 group-hover:scale-110 transition-transform duration-300" size={16} />
+                  <contact.icon className="mr-3 text-green-400 group-hover:scale-110 transition-transform duration-300" size={16} />
                   <span className="text-sm">{contact.text}</span>
                 </a>
               ))}
@@ -175,7 +175,7 @@ export default function Footer() {
 
             {/* Business Hours */}
             <div className="bg-gray-800/50 rounded-lg p-4 backdrop-blur-sm">
-              <h5 className="text-sm font-semibold text-yellow-400 mb-2">Business Hours</h5>
+              <h5 className="text-sm font-semibold text-green-400 mb-2">Business Hours</h5>
               <p className="text-gray-300 text-xs leading-relaxed">
                 24/7 Service Available<br />
                 Emergency Support: Always<br />
@@ -199,7 +199,7 @@ export default function Footer() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={social.ariaLabel}
-                  className={`bg-gray-800 p-3 rounded-full text-gray-300 ${social.color} transition-all duration-300 transform hover:scale-110 hover:shadow-lg group`}
+                  className={`bg-green-400 p-3 rounded-full text-white ${social.color} transition-all duration-300 transform hover:scale-110 hover:shadow-lg group`}
                 >
                   <social.icon size={20} />
                 </a>
@@ -225,7 +225,7 @@ export default function Footer() {
               
               <p>
                 &copy; {currentYear} <span itemProp="name">Aruba Cab Services</span>. All rights reserved. 
-                <span className="text-yellow-400 ml-2">Est. 2015</span>
+                <span className="text-green-400 ml-2">Est. 2015</span>
               </p>
             </div>
 
@@ -242,7 +242,7 @@ export default function Footer() {
             {/* Designer Credit */}
             <p className="flex items-center gap-1 text-xs">
               Designed & Developed by 
-              <span className="text-amber-300 font-semibold hover:text-amber-400 transition-colors">
+              <span className="text-green-300 font-semibold hover:text-green-400 transition-colors">
                 Nova Lab.
               </span>
             </p>

@@ -49,7 +49,7 @@ export default function Header() {
   return (
     <>
       {/* Top Contact Bar - SEO Rich Information */}
-      <div className="bg-gradient-to-r from-yellow-400 to-orange-400 text-gray-900 py-2 px-4 text-sm hidden lg:block">
+      <div className="bg-gradient-to-r from-green-400 to-green-400 text-gray-900 py-2 px-4 text-sm hidden lg:block">
         <div className="container mx-auto flex justify-between items-center">
           <div className="flex items-center space-x-6">
             <div className="flex items-center space-x-2">
@@ -109,19 +109,19 @@ export default function Header() {
             <div className="relative">
               <motion.div
                 whileHover={{ scale: 1.05, rotate: 2 }}
-                className="bg-gradient-to-r from-yellow-400 to-orange-400 p-2 rounded-xl shadow-lg group-hover:shadow-xl transition-all duration-300"
+                className="bg-gradient-to-r from-green-400 to-green-600 p-2 rounded-xl shadow-lg group-hover:shadow-xl transition-all duration-300"
               >
                 <span className="text-gray-900 font-black text-xl">🚗</span>
               </motion.div>
             </div>
             <div className="flex flex-col">
               <span 
-                className="text-white font-extrabold text-2xl tracking-tight group-hover:text-yellow-300 transition-colors"
+                className="text-white font-extrabold text-2xl tracking-tight group-hover:text-green-300 transition-colors"
                 itemProp="name"
               >
                 Aruba Cabs
               </span>
-              <span className="text-yellow-300 text-xs font-medium hidden sm:block">
+              <span className="text-green-300 text-xs font-medium hidden sm:block">
                 Sri Lanka Tours & Transport
               </span>
             </div>
@@ -140,13 +140,13 @@ export default function Header() {
                 >
                   <Link 
                     href={item.href} 
-                    className="hover:text-yellow-300 transition-all duration-300 px-3 py-2 rounded-lg hover:bg-white/10 relative group"
+                    className="hover:text-green-300 transition-all duration-300 px-3 py-2 rounded-lg hover:bg-white/10 relative group"
                     title={item.description}
                     role="menuitem"
                   >
                     {item.name}
                     <motion.div
-                      className="absolute bottom-0 left-0 w-0 h-0.5 bg-yellow-400 group-hover:w-full transition-all duration-300"
+                      className="absolute bottom-0 left-0 w-0 h-0.5 bg-green-400 group-hover:w-full transition-all duration-300"
                       whileHover={{ width: '100%' }}
                     />
                   </Link>
@@ -161,7 +161,7 @@ export default function Header() {
             >
               <Link
                 href="/custom-trip"
-                className="bg-gradient-to-r from-yellow-400 to-orange-400 text-gray-900 font-bold px-6 py-2 rounded-full hover:shadow-lg transition-all duration-300 flex items-center space-x-2"
+                className="bg-gradient-to-r from-green-400 to-green-400 text-gray-900 font-bold px-6 py-2 rounded-full hover:shadow-lg transition-all duration-300 flex items-center space-x-2"
                 aria-label="Book your Sri Lanka cab service now"
               >
                 <span>Book Now</span>
@@ -227,7 +227,7 @@ export default function Header() {
               className="fixed top-20 left-4 right-4 bg-white shadow-2xl rounded-2xl overflow-hidden z-50 md:hidden border border-gray-200"
             >
               {/* Mobile Header */}
-              <div className="bg-gradient-to-r from-yellow-400 to-orange-400 p-4 text-center">
+              <div className="bg-gradient-to-r from-green-400 to-green-500 p-4 text-center">
                 <h3 className="text-gray-900 font-bold text-lg">Aruba Cab Services</h3>
                 <p className="text-gray-800 text-sm">Sri Lanka&apos;s Trusted Transport Partner</p>
               </div>
@@ -245,12 +245,12 @@ export default function Header() {
                     >
                       <Link
                         href={item.href}
-                        className="flex items-center px-4 py-3 text-gray-800 font-semibold text-lg hover:bg-yellow-50 hover:text-yellow-600 transition-all duration-300 rounded-xl group"
+                        className="flex items-center px-4 py-3 text-gray-800 font-semibold text-lg hover:bg-green-50 hover:text-green-600 transition-all duration-300 rounded-xl group"
                         onClick={() => setMenuOpen(false)}
                         title={item.description}
                         role="menuitem"
                       >
-                        <span className="w-2 h-2 bg-yellow-400 rounded-full mr-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
+                        <span className="w-2 h-2 bg-green-400 rounded-full mr-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
                         {item.name}
                       </Link>
                     </motion.li>
@@ -263,7 +263,7 @@ export default function Header() {
                   <div className="space-y-3">
                     <a
                       href={`tel:${contactInfo.phone}`}
-                      className="flex items-center space-x-3 text-gray-600 hover:text-yellow-600 transition-colors"
+                      className="flex items-center space-x-3 text-gray-600 hover:text-green-600 transition-colors"
                       aria-label="Call us for immediate booking"
                     >
                       <Phone size={16} />

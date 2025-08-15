@@ -288,7 +288,7 @@ export default function PackagesPage() {
   };
 
   return (
-    <main className="min-h-screen relative bg-gradient-to-br from-slate-50 via-blue-50 to-teal-50">
+    <main className="min-h-screen relative ">
       {/* Enhanced Background Elements */}
       <motion.div
         className="absolute top-20 left-10 w-96 h-96 bg-gradient-to-r from-blue-200 to-teal-200 rounded-full mix-blend-multiply filter blur-3xl opacity-30 z-0"
@@ -329,7 +329,7 @@ export default function PackagesPage() {
             transition={{ delay: 0.2, duration: 0.6 }}
             className="mb-8"
           >
-            <span className="inline-block px-6 py-3 bg-white/80 backdrop-blur-sm text-blue-700 rounded-full text-sm font-semibold shadow-lg border border-blue-200/50">
+            <span className="inline-block px-6 py-3 bg-white backdrop-blur-sm text-blue-700 rounded-full text-sm font-semibold shadow-lg border border-blue-200/50">
               ✨ Handcrafted Experiences Since 2015
             </span>
           </motion.div>
@@ -420,8 +420,8 @@ export default function PackagesPage() {
 
       {/* Enhanced CTA Section */}
       <section className="py-32 px-6 text-center relative z-10 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-r from-gray-900 via-blue-900 to-teal-900"></div>
-        <div className="absolute inset-0 bg-black/20"></div>
+        <div className="absolute inset-0 "></div>
+        <div className="absolute inset-0 "></div>
         
         {/* Background Pattern */}
         <div className="absolute inset-0 opacity-10">
@@ -443,7 +443,7 @@ export default function PackagesPage() {
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-            <h2 className="text-4xl md:text-6xl font-bold mb-8 text-white leading-tight">
+            <h2 className="text-4xl md:text-6xl font-bold mb-8 text-black/100 leading-tight">
               Can&apos;t Find Your
               <span className="block bg-clip-text text-transparent bg-gradient-to-r from-yellow-400 to-orange-400">
                 Dream Adventure?
@@ -456,7 +456,7 @@ export default function PackagesPage() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.4, duration: 0.8 }}
-            className="text-xl text-gray-300 max-w-2xl mx-auto mb-12 leading-relaxed"
+            className="text-xl text-gray-600 max-w-2xl mx-auto mb-12 leading-relaxed"
           >
             We specialize in creating completely customizable tours tailored to your interests, budget, and schedule. Tell us your dream itinerary, and we&apos;ll make it happen!
           </motion.p>
@@ -485,7 +485,7 @@ export default function PackagesPage() {
               href="/contact"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="border-2 border-white text-white font-semibold px-10 py-5 rounded-2xl hover:bg-white hover:text-gray-800 transition-all duration-300 flex items-center gap-3 text-lg"
+              className="border-2 bg-white border-white text-black font-semibold px-10 py-5 rounded-2xl hover:bg-white hover:text-gray-800 transition-all duration-300 flex items-center gap-3 text-lg"
             >
               💬 Chat With Us
             </motion.a>

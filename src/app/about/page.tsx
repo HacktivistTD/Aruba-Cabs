@@ -148,7 +148,7 @@ export default function AboutPage() {
   const slideInRight = useScrollAnimation();
 
   return (
-    <main className="min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-slate-800">
+    <main className="min-h-screen bg-white">
       {/* Hero Section */}
       <section className="py-20 px-6 text-center relative overflow-hidden">
         {/* Background Elements */}
@@ -166,19 +166,19 @@ export default function AboutPage() {
             transition={{ duration: 0.8 }}
             className="mb-6"
           >
-            <span className="inline-block px-4 py-2 bg-yellow-400/20 text-yellow-300 rounded-full text-sm font-medium mb-4 backdrop-blur-sm border border-yellow-400/30">
+            <span className="inline-block px-4 py-2 bg-yellow-400/20 text-black rounded-full text-sm font-medium mb-4 backdrop-blur-sm border border-yellow-400/30">
               ✨ Since 2015
             </span>
           </motion.div>
           
-          <h1 className="text-5xl md:text-7xl font-extrabold bg-gradient-to-r from-white via-yellow-200 to-yellow-400 bg-clip-text text-transparent mb-8 leading-tight">
-            About <span className="text-yellow-400">Aruba Cab</span>
+          <h1 className="text-5xl md:text-7xl text-black font-bold  bg-clip-text  mb-8 leading-tight">
+            About <span className="">Aruba Cab</span>
           </h1>
           <motion.p
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.5, duration: 1 }}
-            className="text-xl text-gray-300 leading-relaxed max-w-3xl mx-auto font-light"
+            className="text-xl text-green-500 leading-relaxed max-w-3xl mx-auto font-light"
           >
             Your trusted partner for exploring the beauty and culture of Sri Lanka — one smooth ride at a time.
           </motion.p>
@@ -366,7 +366,7 @@ export default function AboutPage() {
           transition={{ duration: 0.8 }}
           className="max-w-4xl mx-auto"
         >
-          <h2 className="text-4xl md:text-6xl font-bold mb-8 bg-gradient-to-r from-white via-yellow-200 to-yellow-400 bg-clip-text text-transparent">
+          <h2 className="text-4xl md:text-6xl font-bold mb-8 text-black">
             Ready to Explore with Us?
           </h2>
           <motion.p
@@ -374,7 +374,7 @@ export default function AboutPage() {
             whileInView={{ y: 0, opacity: 1 }}
             viewport={{ once: true }}
             transition={{ delay: 0.3, duration: 0.8 }}
-            className="text-xl text-gray-300 max-w-3xl mx-auto mb-12 leading-relaxed"
+            className="text-xl text-gray-700 max-w-3xl mx-auto mb-12 leading-relaxed"
           >
             Whether it&apos;s a city tour, cultural expedition, or a cross-country adventure, we&apos;re here to make your Sri Lankan journey absolutely unforgettable.
           </motion.p>
