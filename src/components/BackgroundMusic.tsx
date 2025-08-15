@@ -5,8 +5,6 @@ import { useEffect, useRef, useState } from "react";
 export default function BackgroundMusic() {
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const [isLoaded, setIsLoaded] = useState(false);
-  const [isPlaying, setIsPlaying] = useState(false);
-  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     if (typeof window === "undefined") return;
@@ -17,20 +15,9 @@ export default function BackgroundMusic() {
     audio.volume = 0;
     audioRef.current = audio;
 
-    const handleCanPlay = () => {
-      setIsLoaded(true);
-      console.log("Audio loaded successfully");
-    };
-
-    const handleError = (e: Event) => {
-      const errorMsg = `Audio load error: ${audio.error?.message || "Unknown error"}`;
-      setError(errorMsg);
-      console.error(errorMsg, e);
-    };
-
-    const handleLoadStart = () => {
-      console.log("Audio loading started");
-    };
+    const handleCanPlay = () => setIsLoaded(true);
+    const handleError = () => console.error("Audio failed to load");
+    const handleLoadStart = () => {};
 
     audio.addEventListener("canplay", handleCanPlay);
     audio.addEventListener("error", handleError);
@@ -44,9 +31,6 @@ export default function BackgroundMusic() {
 
       try {
         await audioRef.current.play();
-        setIsPlaying(true);
-        console.log("Autoplay successful");
-
         let vol = 0;
         const fadeInterval = setInterval(() => {
           if (audioRef.current && vol < 0.5) {
@@ -55,19 +39,11 @@ export default function BackgroundMusic() {
             if (vol >= 0.5) clearInterval(fadeInterval);
           }
         }, 100);
-      } catch (err) {
-        console.log("Autoplay blocked, waiting for user interaction:", err);
-        setError("Click anywhere to start music");
-
+      } catch {
         const startMusic = async () => {
           if (!audioRef.current) return;
-
           try {
             await audioRef.current.play();
-            setIsPlaying(true);
-            setError(null);
-            console.log("Music started after user interaction");
-
             let vol = 0;
             const fadeInterval = setInterval(() => {
               if (audioRef.current && vol < 0.5) {
@@ -76,11 +52,7 @@ export default function BackgroundMusic() {
                 if (vol >= 0.5) clearInterval(fadeInterval);
               }
             }, 100);
-          } catch (playErr) {
-            setError("Failed to play audio");
-            console.error("Playback failed:", playErr);
-          }
-
+          } catch {}
           document.removeEventListener("click", startMusic);
           document.removeEventListener("touchstart", startMusic);
           document.removeEventListener("keydown", startMusic);
@@ -92,9 +64,7 @@ export default function BackgroundMusic() {
       }
     };
 
-    if (isLoaded) {
-      attemptAutoplay();
-    }
+    if (isLoaded) attemptAutoplay();
 
     return () => {
       if (audioRef.current) {
@@ -107,32 +77,5 @@ export default function BackgroundMusic() {
     };
   }, [isLoaded]);
 
-  return (
-    <div
-      style={{
-        position: "fixed",
-        top: 10,
-        right: 10,
-        background: "rgba(0,0,0,0.8)",
-        color: "white",
-        padding: "10px",
-        borderRadius: "5px",
-        fontSize: "12px",
-        zIndex: 1000,
-        maxWidth: "200px",
-      }}
-    >
-      <div>Status: {isPlaying ? "🎵 Playing" : "⏸️ Stopped"}</div>
-      <div>Loaded: {isLoaded ? "✅" : "⏳"}</div>
-      {error && <div style={{ color: "#ff6b6b" }}>⚠️ {error}</div>}
-      {!isPlaying && isLoaded && (
-        <button
-          onClick={() => audioRef.current?.play().then(() => setIsPlaying(true))}
-          style={{ marginTop: "5px", padding: "2px 8px", fontSize: "10px" }}
-        >
-          Start Music
-        </button>
-      )}
-    </div>
-  );
+  return null; // No UI display
 }
