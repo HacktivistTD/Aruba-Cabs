@@ -113,7 +113,7 @@ export default function HomePage() {
                   y: -2
                 }}
                 whileTap={{ scale: 0.95 }}
-                className="w-full sm:w-auto bg-gradient-to-r from-green-500 to-yellow-500 text-black text-base sm:text-lg font-bold px-8 sm:px-12 py-4 sm:py-5 rounded-full shadow-2xl hover:shadow-green-500/25 transition-all duration-300 border-2 border-green-400/20"
+                className="w-full sm:w-auto bg-green-500  text-black text-base sm:text-lg font-bold px-8 sm:px-12 py-4 sm:py-5 rounded-full shadow-2xl hover:shadow-green-500/25 transition-all duration-300 border-2 border-green-400/20"
               >
                  Book Your Adventure
               </motion.button>
@@ -121,7 +121,7 @@ export default function HomePage() {
             <motion.button
               whileHover={{ scale: 1.05, y: -2 }}
               whileTap={{ scale: 0.95 }}
-              className="w-full sm:w-auto bg-transparent border-2 border-white/30 backdrop-blur-sm text-white font-semibold px-8 sm:px-12 py-4 sm:py-5 rounded-full hover:bg-white/10 transition-all duration-300"
+              className="w-full sm:w-auto bg-yellow-500 text-black font-semibold px-8 sm:px-12 py-4 sm:py-5 rounded-full hover:bg-yellow-400 transition-all duration-300"
             >
                Get Free Quote
             </motion.button>
@@ -145,7 +145,7 @@ export default function HomePage() {
                 whileHover={{ scale: 1.1, y: -5 }}
                 className="bg-white/10 backdrop-blur-md rounded-xl p-4 sm:p-6 border border-white/20"
               >
-                <div className="text-2xl sm:text-3xl font-bold text-green-400">{stat.number}</div>
+                <div className="text-2xl sm:text-3xl font-bold text-green-600">{stat.number}</div>
                 <div className="text-xs sm:text-sm text-gray-700 mt-1">{stat.label}</div>
               </motion.div>
             ))}
@@ -263,7 +263,7 @@ export default function HomePage() {
           >
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-black mb-4">
               What Our{' '}
-              <span className="bg-gradient-to-r from-green-400 to-yellow-500 bg-clip-text text-transparent">
+              <span className="bg-green-400 bg-clip-text text-transparent">
                 Travelers Say
               </span>
             </h2>
