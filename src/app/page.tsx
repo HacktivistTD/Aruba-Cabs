@@ -58,7 +58,7 @@ export default function HomePage() {
   
           <motion.div
             initial={{ scale: 1.1, opacity: 0 }}
-            animate={{ scale: 1, opacity: 0.3 }}
+            animate={{ scale: 1, opacity: 0.8 }}
             transition={{ duration: 2 }}
             className="w-full h-full bg-cover bg-center bg-fixed"
             style={{
@@ -93,7 +93,7 @@ export default function HomePage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.5, duration: 1 }}
-            className="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-700 mb-8 sm:mb-10 max-w-4xl mx-auto leading-relaxed px-4"
+            className="text-base sm:text-lg md:text-xl lg:text-2xl text-white mb-8 sm:mb-10 max-w-4xl mx-auto leading-relaxed px-4"
           >
             Discover the pearl of the Indian Ocean with reliable, comfortable, and personalized cab services. 
             From ancient temples to pristine beaches, we&apos;ll take you there in style and comfort.
