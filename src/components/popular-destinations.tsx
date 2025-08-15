@@ -25,7 +25,7 @@ export default function PopularDestinations() {
           viewport={{ once: true }}
           className="text-center"
         >
-          <h2 className="text-4xl font-extrabold text-White">Popular Destinations</h2>
+          <h2 className="text-4xl font-extrabold text-black">Popular Destinations</h2>
           <p className="mt-4 text-lg text-green-400">
             Explore the most loved spots in Sri Lanka for your next adventure.
           </p>

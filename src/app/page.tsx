@@ -146,7 +146,7 @@ export default function HomePage() {
                 className="bg-white/10 backdrop-blur-md rounded-xl p-4 sm:p-6 border border-white/20"
               >
                 <div className="text-2xl sm:text-3xl font-bold text-green-400">{stat.number}</div>
-                <div className="text-xs sm:text-sm text-gray-300 mt-1">{stat.label}</div>
+                <div className="text-xs sm:text-sm text-gray-700 mt-1">{stat.label}</div>
               </motion.div>
             ))}
           </motion.div>
