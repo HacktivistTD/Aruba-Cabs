@@ -134,7 +134,7 @@ Places to Visit: ${selectedPackage.places.join(', ')}
 Accommodations: ${selectedPackage.nightStops.join(', ')}
     `.trim();
 
-    const mailtoLink = `mailto:arubacabs@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(emailBody)}`;
+    const mailtoLink = `mailto:thusharadilrukshatd@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(emailBody)}`;
     
     // Open email client
     window.location.href = mailtoLink;

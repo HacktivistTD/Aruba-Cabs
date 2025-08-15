@@ -67,7 +67,7 @@ function PackageCard({ pkg }: { pkg: Package }) {
           }}
         />
         <div
-          className={`absolute inset-0 bg-gradient-to-t ${pkg.color} opacity-20 group-hover:opacity-30 transition-opacity duration-500`}
+          className={`absolute inset-0  opacity-20 group-hover:opacity-30 transition-opacity duration-500`}
         />
         
         {/* Floating badges */}
@@ -374,7 +374,7 @@ export default function PackagesPage() {
             </motion.a>
             
             <motion.a
-              href="/custom"
+              href="/custom-trip"
               whileHover={{ scale: 1.05, boxShadow: '0px 15px 35px rgba(234, 179, 8, 0.4)' }}
               whileTap={{ scale: 0.95 }}
               animate={{ scale: [1, 1.02, 1] }}
@@ -469,23 +469,24 @@ export default function PackagesPage() {
             className="flex flex-col sm:flex-row gap-6 justify-center items-center"
           >
             <motion.a
-              href="/custom"
+              href="/custom-trip"
               whileHover={{ 
                 scale: 1.05, 
                 boxShadow: '0px 20px 40px rgba(255,255,255,0.2)' 
               }}
               whileTap={{ scale: 0.95 }}
-              className="bg-white text-gray-800 font-bold px-10 py-5 rounded-2xl shadow-2xl hover:shadow-3xl transition-all duration-300 flex items-center gap-3 text-lg"
+              className="bg-yellow-400 text-gray-800 font-bold px-10 py-5 rounded-2xl shadow-2xl hover:shadow-3xl transition-all duration-300 flex items-center gap-3 text-lg"
             >
               <Compass className="w-6 h-6" />
               Build Custom Tour
             </motion.a>
             
             <motion.a
-              href="/contact"
+              href= "https://wa.me/94777656999"
+
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="border-2 bg-white border-white text-black font-semibold px-10 py-5 rounded-2xl hover:bg-white hover:text-gray-800 transition-all duration-300 flex items-center gap-3 text-lg"
+              className="bg-green-600  text-white font-bold px-10 py-5 rounded-2xl shadow-2xl hover:shadow-3xl transition-all duration-300 flex items-center gap-3 text-lg"
             >
               💬 Chat With Us
             </motion.a>

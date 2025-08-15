@@ -70,7 +70,7 @@ export default function Footer() {
     {
       icon: FaEnvelope,
       text: 'arubacabs@gmail.com',
-      href: 'mailto:arubacabs@gmail.com',
+      href: 'mailto:thusharadilrukshatd@gmail.com',
       label: 'Email us for inquiries and bookings'
     },
     {

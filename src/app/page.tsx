@@ -380,7 +380,7 @@ export default function HomePage() {
             className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center items-center"
           >
             <motion.a
-              href="/book"
+              href="/packages"
               whileHover={{ 
                 scale: 1.05,
                 boxShadow: '0px 20px 50px rgba(251, 191, 36, 0.4)'
@@ -392,7 +392,7 @@ export default function HomePage() {
             </motion.a>
 
             <motion.a
-              href="tel:+94771234567"
+              href="tel:+94777656999"
               whileHover={{ scale: 1.05, y: -2 }}
               whileTap={{ scale: 0.95 }}
               className="w-full sm:w-auto inline-block bg-transparent border-2 border-green-400/50 backdrop-blur-sm text-black font-semibold text-base sm:text-lg px-8 sm:px-12 py-4 sm:py-5 rounded-full hover:bg-green-400/10 hover:border-green-400 transition-all duration-300"

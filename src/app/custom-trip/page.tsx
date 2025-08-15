@@ -38,7 +38,7 @@ const suggestionsData: Record<string, Array<{name: string, type: string, descrip
     { name: 'Galle Dutch Fort', type: 'Cultural', description: 'Colonial architecture by the sea' },
   ],
   adventure: [
-    { name: 'Kitulgala White Water Rafting', type: 'Adventure', description: 'Thrilling river rafting experience' },
+    { name: 'Kitulgala black Water Rafting', type: 'Adventure', description: 'Thrilling river rafting experience' },
     { name: 'Zip-lining in Ella', type: 'Adventure', description: 'Soar through tea plantations' },
     { name: 'Hot Air Ballooning', type: 'Adventure', description: 'Aerial views of Sri Lankan landscape' },
   ]
@@ -142,7 +142,7 @@ export default function AIBasedTripPlanner() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-slate-900">
+    <div className="min-h-screen ">
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-10">
         <div className="absolute inset-0" style={{
@@ -158,13 +158,13 @@ export default function AIBasedTripPlanner() {
           transition={{ duration: 0.8 }}
           className="text-center mb-8 sm:mb-12"
         >
-          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-2 sm:mb-4">
+          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-black mb-2 sm:mb-4">
             Plan Your{' '}
             <span className="bg-gradient-to-r from-yellow-400 to-orange-500 bg-clip-text text-transparent">
               Perfect Trip
             </span>
           </h1>
-          <p className="text-base sm:text-lg text-gray-300 mb-4">
+          <p className="text-base sm:text-lg text-green-300 mb-4">
             ✨ AI-powered travel suggestions tailored just for you
           </p>
           
@@ -175,19 +175,19 @@ export default function AIBasedTripPlanner() {
                 <div className={`w-8 h-8 sm:w-10 sm:h-10 rounded-full flex items-center justify-center text-sm sm:text-base font-bold transition-all duration-300 ${
                   currentStep >= step 
                     ? 'bg-gradient-to-r from-yellow-400 to-orange-500 text-black' 
-                    : 'bg-gray-700 text-gray-400'
+                    : 'bg-gray-400 text-white'
                 }`}>
                   {step}
                 </div>
                 {step < 3 && (
                   <div className={`w-8 sm:w-16 h-1 mx-2 transition-all duration-300 ${
-                    currentStep > step ? 'bg-yellow-400' : 'bg-gray-700'
+                    currentStep > step ? 'bg-yellow-400' : 'bg-black'
                   }`} />
                 )}
               </div>
             ))}
           </div>
-          <div className="flex justify-center space-x-4 sm:space-x-12 mt-2 text-xs sm:text-sm text-gray-400">
+          <div className="flex justify-center space-x-4 sm:space-x-12 mt-2 text-xs sm:text-sm text-black">
             <span className={currentStep >= 1 ? 'text-yellow-400' : ''}>Destinations</span>
             <span className={currentStep >= 2 ? 'text-yellow-400' : ''}>Date & Vehicle</span>
             <span className={currentStep >= 3 ? 'text-yellow-400' : ''}>Confirm</span>
@@ -199,7 +199,7 @@ export default function AIBasedTripPlanner() {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.3, duration: 0.8 }}
-          className="w-full max-w-4xl bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-6 sm:p-8 lg:p-10"
+          className="w-full max-w-4xl bg-black/5 backdrop-blur-sm border border-black/10 rounded-2xl p-6 sm:p-8 lg:p-10"
         >
           <form onSubmit={handleSubmit} className="space-y-6 sm:space-y-8">
             <AnimatePresence mode="wait">
@@ -214,10 +214,10 @@ export default function AIBasedTripPlanner() {
                   className="space-y-6"
                 >
                   <div>
-                    <label htmlFor="destinations" className="block text-lg sm:text-xl font-bold text-white mb-3 sm:mb-4">
+                    <label htmlFor="destinations" className="block text-lg sm:text-xl font-bold text-black mb-3 sm:mb-4">
                       🎯 What interests you most?
                     </label>
-                    <p className="text-gray-300 text-sm sm:text-base mb-4">
+                    <p className="text-green-700 text-sm sm:text-base mb-4">
                       Try: &quot;beach and wildlife&quot;, &quot;mountains and tea&quot;, &quot;cultural sites&quot;, &quot;adventure activities&quot;
                     </p>
                     
@@ -228,7 +228,7 @@ export default function AIBasedTripPlanner() {
                         value={input}
                         onChange={(e) => setInput(e.target.value)}
                         placeholder="Describe your ideal Sri Lankan adventure..."
-                        className="w-full rounded-xl border-2 border-gray-600 bg-gray-800/50 backdrop-blur-sm px-4 sm:px-6 py-3 sm:py-4 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-yellow-400 focus:border-yellow-400 transition-all duration-300 text-base sm:text-lg"
+                        className="w-full rounded-xl border-2 border-green-600 bg-yellow-50 backdrop-blur-sm px-4 sm:px-6 py-3 sm:py-4 text-black placeholder-green-400 focus:outline-none focus:ring-2 focus:ring-yellow-400 focus:border-yellow-400 transition-all duration-300 text-base sm:text-lg"
                       />
                       {isLoading && (
                         <div className="absolute right-4 top-1/2 transform -translate-y-1/2">
@@ -244,7 +244,7 @@ export default function AIBasedTripPlanner() {
                           key={suggestion}
                           type="button"
                           onClick={() => setInput(suggestion)}
-                          className="bg-gray-700/50 hover:bg-yellow-400/20 text-gray-300 hover:text-yellow-400 px-3 py-1 rounded-full text-xs sm:text-sm transition-all duration-300 border border-gray-600 hover:border-yellow-400"
+                          className="bg-yellow-50 hover:bg-yellow-400/20 text-black hover:text-black px-3 py-1 rounded-full text-xs sm:text-sm transition-all duration-300 border border-green-600 hover:border-yellow-400"
                         >
                           {suggestion}
                         </button>
@@ -274,13 +274,13 @@ export default function AIBasedTripPlanner() {
                             >
                               <div className="flex items-start justify-between">
                                 <div className="flex-1">
-                                  <h3 className="text-white font-semibold text-sm sm:text-base mb-1 group-hover:text-yellow-400 transition-colors">
+                                  <h3 className="text-black font-semibold text-sm sm:text-base mb-1 group-hover:text-yellow-400 transition-colors">
                                     {place.name}
                                   </h3>
-                                  <p className="text-gray-400 text-xs sm:text-sm mb-2 leading-relaxed">
+                                  <p className="text-green-600 text-xs sm:text-sm mb-2 leading-relaxed">
                                     {place.description}
                                   </p>
-                                  <span className="inline-block bg-yellow-400/20 text-yellow-400 text-xs px-2 py-1 rounded-full">
+                                  <span className="inline-block bg-yellow-400/20 text-black text-xs px-2 py-1 rounded-full">
                                     {place.type}
                                   </span>
                                 </div>
@@ -304,7 +304,7 @@ export default function AIBasedTripPlanner() {
                         exit={{ opacity: 0, height: 0 }}
                         className="overflow-hidden"
                       >
-                        <h2 className="text-lg sm:text-xl font-bold text-white mb-4">
+                        <h2 className="text-lg sm:text-xl font-bold text-black mb-4">
                           🎯 Your Selected Destinations ({selectedPlaces.length})
                         </h2>
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
@@ -318,17 +318,17 @@ export default function AIBasedTripPlanner() {
                               className="bg-gradient-to-r from-yellow-400/20 to-orange-500/20 border border-yellow-400/50 rounded-xl p-3 sm:p-4 flex items-center justify-between group"
                             >
                               <div className="flex-1">
-                                <h3 className="text-white font-semibold text-sm sm:text-base mb-1">
+                                <h3 className="text-black font-semibold text-sm sm:text-base mb-1">
                                   {place.name}
                                 </h3>
-                                <p className="text-gray-300 text-xs sm:text-sm">
+                                <p className="text-green-300 text-xs sm:text-sm">
                                   {place.description}
                                 </p>
                               </div>
                               <button
                                 type="button"
                                 onClick={() => handleRemovePlace(place.name)}
-                                className="ml-3 text-gray-400 hover:text-red-400 transition-colors p-1"
+                                className="ml-3 text-green-400 hover:text-red-400 transition-colors p-1"
                                 aria-label={`Remove ${place.name}`}
                               >
                                 <svg className="w-4 h-4 sm:w-5 sm:h-5" fill="currentColor" viewBox="0 0 20 20">
@@ -357,10 +357,10 @@ export default function AIBasedTripPlanner() {
                   <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8">
                     {/* Calendar Section */}
                     <div>
-                      <label className="block text-lg sm:text-xl font-bold text-white mb-4">
+                      <label className="block text-lg sm:text-xl font-bold text-black mb-4">
                         📅 Select Your Trip Date
                       </label>
-                      <div className="bg-gray-800/30 backdrop-blur-sm rounded-xl p-4 border border-gray-600">
+                      <div className="bg-green-800/30 backdrop-blur-sm rounded-xl p-4 border border-green-600">
                         <Calendar
                           mode="single"
                           selected={selectedDate}
@@ -368,23 +368,23 @@ export default function AIBasedTripPlanner() {
                           disabled={(date) => date < new Date()}
                           className="rounded-lg"
                           classNames={{
-                            months: "text-white",
-                            month: "text-white",
-                            caption: "text-white",
-                            caption_label: "text-white font-medium",
-                            nav_button: "text-white hover:bg-yellow-400/20",
-                            nav_button_previous: "text-white hover:bg-yellow-400/20",
-                            nav_button_next: "text-white hover:bg-yellow-400/20",
-                            table: "text-white",
-                            head_row: "text-gray-300",
-                            head_cell: "text-gray-300 font-medium",
-                            row: "text-white",
-                            cell: "text-white",
-                            day: "text-white hover:bg-yellow-400/20 rounded-lg",
+                            months: "text-black",
+                            month: "text-black",
+                            caption: "text-black",
+                            caption_label: "text-black font-medium",
+                            nav_button: "text-black hover:bg-yellow-400/20",
+                            nav_button_previous: "text-black hover:bg-yellow-400/20",
+                            nav_button_next: "text-black hover:bg-yellow-400/20",
+                            table: "text-black",
+                            head_row: "text-green-300",
+                            head_cell: "text-green-300 font-medium",
+                            row: "text-black",
+                            cell: "text-black",
+                            day: "text-black hover:bg-yellow-400/20 rounded-lg",
                             day_selected: "bg-yellow-400 text-black font-bold",
-                            day_today: "bg-blue-600/30 text-white",
-                            day_outside: "text-gray-500",
-                            day_disabled: "text-gray-500",
+                            day_today: "bg-blue-600/30 text-black",
+                            day_outside: "text-green-500",
+                            day_disabled: "text-green-500",
                             day_hidden: "invisible",
                           }}
                         />
@@ -398,7 +398,7 @@ export default function AIBasedTripPlanner() {
 
                     {/* Vehicle Selection */}
                     <div>
-                      <label className="block text-lg sm:text-xl font-bold text-white mb-4">
+                      <label className="block text-lg sm:text-xl font-bold text-black mb-4">
                         🚗 Choose Your Vehicle
                       </label>
                       <div className="space-y-3 sm:space-y-4">
@@ -410,7 +410,7 @@ export default function AIBasedTripPlanner() {
                             className={`relative flex items-center p-4 sm:p-5 rounded-xl border-2 transition-all duration-300 cursor-pointer ${
                               vehicle === option.value
                                 ? 'border-yellow-400 bg-yellow-400/10'
-                                : 'border-gray-600 bg-gray-800/30 hover:border-gray-500 hover:bg-gray-800/50'
+                                : 'border-green-600 bg-green-800/30 hover:border-green-500 hover:bg-green-800/50'
                             }`}
                           >
                             <input
@@ -425,10 +425,10 @@ export default function AIBasedTripPlanner() {
                               <div className="flex items-center">
                                 <span className="text-2xl sm:text-3xl mr-3 sm:mr-4">{option.icon}</span>
                                 <div>
-                                  <h3 className="text-white font-semibold text-sm sm:text-base">
+                                  <h3 className="text-black font-semibold text-sm sm:text-base">
                                     {option.label}
                                   </h3>
-                                  <p className="text-gray-400 text-xs sm:text-sm">
+                                  <p className="text-green-400 text-xs sm:text-sm">
                                     {option.price}
                                   </p>
                                 </div>
@@ -436,7 +436,7 @@ export default function AIBasedTripPlanner() {
                               <div className={`w-4 h-4 sm:w-5 sm:h-5 rounded-full border-2 transition-all ${
                                 vehicle === option.value
                                   ? 'border-yellow-400 bg-yellow-400'
-                                  : 'border-gray-400'
+                                  : 'border-green-400'
                               }`}>
                                 {vehicle === option.value && (
                                   <div className="w-full h-full rounded-full bg-yellow-400 transform scale-50"></div>
@@ -462,36 +462,36 @@ export default function AIBasedTripPlanner() {
                   className="space-y-6 sm:space-y-8"
                 >
                   <div className="bg-gradient-to-r from-green-500/10 to-blue-500/10 border border-green-500/30 rounded-xl p-6 sm:p-8">
-                    <h2 className="text-2xl sm:text-3xl font-bold text-white mb-6 text-center">
+                    <h2 className="text-2xl sm:text-3xl font-bold text-black mb-6 text-center">
                       🎉 Trip Summary
                     </h2>
                     
                     <div className="space-y-4 sm:space-y-6">
                       {/* Date */}
-                      <div className="flex items-center justify-between py-3 border-b border-gray-600">
-                        <span className="text-gray-300 font-medium">📅 Travel Date:</span>
-                        <span className="text-white font-semibold">
+                      <div className="flex items-center justify-between py-3 border-b border-green-600">
+                        <span className="text-green-300 font-medium">📅 Travel Date:</span>
+                        <span className="text-black font-semibold">
                           {selectedDate?.toDateString() || 'Not selected'}
                         </span>
                       </div>
 
                       {/* Vehicle */}
-                      <div className="flex items-center justify-between py-3 border-b border-gray-600">
-                        <span className="text-gray-300 font-medium">🚗 Vehicle:</span>
-                        <span className="text-white font-semibold">
+                      <div className="flex items-center justify-between py-3 border-b border-green-600">
+                        <span className="text-green-300 font-medium">🚗 Vehicle:</span>
+                        <span className="text-black font-semibold">
                           {vehicleOptions.find(v => v.value === vehicle)?.label}
                         </span>
                       </div>
 
                       {/* Destinations */}
                       <div className="py-3">
-                        <span className="text-gray-300 font-medium mb-3 block">📍 Destinations ({selectedPlaces.length}):</span>
+                        <span className="text-green-300 font-medium mb-3 block">📍 Destinations ({selectedPlaces.length}):</span>
                         <div className="grid grid-cols-1 gap-2">
                           {selectedPlaces.map((place, index) => (
-                            <div key={place.name} className="flex items-center justify-between bg-gray-800/50 rounded-lg p-3">
+                            <div key={place.name} className="flex items-center justify-between bg-green-800/50 rounded-lg p-3">
                               <div>
-                                <span className="text-white font-medium text-sm sm:text-base">{place.name}</span>
-                                <span className="text-gray-400 text-xs sm:text-sm ml-2">({place.type})</span>
+                                <span className="text-black font-medium text-sm sm:text-base">{place.name}</span>
+                                <span className="text-green-400 text-xs sm:text-sm ml-2">({place.type})</span>
                               </div>
                               <span className="text-yellow-400 text-sm">#{index + 1}</span>
                             </div>
@@ -506,7 +506,7 @@ export default function AIBasedTripPlanner() {
                     <p className="text-yellow-400 font-medium mb-2">
                       📞 Next Steps
                     </p>
-                    <p className="text-gray-300 text-sm sm:text-base leading-relaxed">
+                    <p className="text-green-300 text-sm sm:text-base leading-relaxed">
                       After confirming your trip, our travel experts will contact you within 24 hours with a detailed itinerary, 
                       exact pricing, and booking confirmation. You can make changes until 48 hours before your trip.
                     </p>
@@ -516,13 +516,13 @@ export default function AIBasedTripPlanner() {
             </AnimatePresence>
 
             {/* Navigation Buttons */}
-            <div className="flex flex-col sm:flex-row justify-between gap-4 pt-6 sm:pt-8 border-t border-gray-600">
+            <div className="flex flex-col sm:flex-row justify-between gap-4 pt-6 sm:pt-8 border-t border-green-600">
               <div className="flex-1">
                 {currentStep > 1 && (
                   <Button
                     type="button"
                     onClick={prevStep}
-                    className="w-full sm:w-auto bg-gray-700 hover:bg-gray-600 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-xl font-semibold text-base transition-all duration-300"
+                    className="w-full sm:w-auto bg-green-700 hover:bg-green-600 text-black px-6 sm:px-8 py-3 sm:py-4 rounded-xl font-semibold text-base transition-all duration-300"
                   >
                     ← Previous
                   </Button>
@@ -542,11 +542,11 @@ export default function AIBasedTripPlanner() {
                   <Button
                     type="submit"
                     disabled={isLoading}
-                    className="w-full sm:w-auto bg-gradient-to-r from-green-500 to-blue-500 hover:from-green-600 hover:to-blue-600 text-white font-bold px-6 sm:px-8 py-3 sm:py-4 rounded-xl text-base transition-all duration-300 shadow-lg disabled:opacity-50 disabled:cursor-not-allowed"
+                    className="w-full sm:w-auto bg-gradient-to-r from-green-500 to-blue-500 hover:from-green-600 hover:to-blue-600 text-black font-bold px-6 sm:px-8 py-3 sm:py-4 rounded-xl text-base transition-all duration-300 shadow-lg disabled:opacity-50 disabled:cursor-not-allowed"
                   >
                     {isLoading ? (
                       <div className="flex items-center">
-                        <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white mr-2"></div>
+                        <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-black mr-2"></div>
                         Planning Your Trip...
                       </div>
                     ) : (
@@ -575,13 +575,13 @@ export default function AIBasedTripPlanner() {
             <motion.div
               key={index}
               whileHover={{ scale: 1.05, y: -5 }}
-              className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-4 sm:p-6 text-center group hover:bg-white/10 transition-all duration-300"
+              className="bg-black/5 backdrop-blur-sm border border-black/10 rounded-xl p-4 sm:p-6 text-center group hover:bg-black/10 transition-all duration-300"
             >
               <div className="text-2xl sm:text-3xl mb-2">{item.icon}</div>
-              <h3 className="text-white font-semibold text-sm sm:text-base mb-1 group-hover:text-yellow-400 transition-colors">
+              <h3 className="text-black font-semibold text-sm sm:text-base mb-1 group-hover:text-yellow-400 transition-colors">
                 {item.title}
               </h3>
-              <p className="text-gray-400 text-xs sm:text-sm group-hover:text-gray-300 transition-colors">
+              <p className="text-green-400 text-xs sm:text-sm group-hover:text-green-300 transition-colors">
                 {item.desc}
               </p>
             </motion.div>
@@ -595,17 +595,17 @@ export default function AIBasedTripPlanner() {
           transition={{ delay: 1, duration: 0.8 }}
           className="mt-8 sm:mt-12 text-center"
         >
-          <p className="text-gray-400 text-sm sm:text-base mb-4">
+          <p className="text-green-400 text-sm sm:text-base mb-4">
             Need help planning your trip? Our experts are here to assist!
           </p>
           <div className="flex flex-col sm:flex-row justify-center items-center gap-4 text-sm">
-            <a href="tel:+94771234567" className="text-yellow-400 hover:text-yellow-300 transition-colors flex items-center gap-2">
-              📞 +94 77 123 4567
+            <a href="tel:+94777656999" className="text-yellow-400 hover:text-yellow-300 transition-colors flex items-center gap-2">
+              📞 +94 77 7656 999
             </a>
-            <a href="mailto:info@arubacab.lk" className="text-yellow-400 hover:text-yellow-300 transition-colors flex items-center gap-2">
+            <a href="mailto:thusharadilrukshatd@gmail.com" className="text-yellow-400 hover:text-yellow-300 transition-colors flex items-center gap-2">
               📧 info@arubacab.lk
             </a>
-            <a href="https://wa.me/94771234567" className="text-yellow-400 hover:text-yellow-300 transition-colors flex items-center gap-2">
+            <a href="https://wa.me/94777656999" className="text-yellow-400 hover:text-yellow-300 transition-colors flex items-center gap-2">
               💬 WhatsApp Chat
             </a>
           </div>

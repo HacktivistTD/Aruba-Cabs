@@ -42,7 +42,7 @@ export default function Header() {
 
   const contactInfo = {
     phone: '+94 77 765 6999',
-    location: 'Colombo, Sri Lanka',
+    location: 'Morawaka, Sri Lanka',
     hours: '24/7 Service'
   };
 
@@ -161,7 +161,7 @@ export default function Header() {
             >
               <Link
                 href="/custom-trip"
-                className="bg-gradient-to-r from-green-400 to-green-400 text-gray-900 font-bold px-6 py-2 rounded-full hover:shadow-lg transition-all duration-300 flex items-center space-x-2"
+                className="bg-green-400 text-gray-900 font-bold px-6 py-2 rounded-full hover:shadow-lg transition-all duration-300 flex items-center space-x-2"
                 aria-label="Book your Sri Lanka cab service now"
               >
                 <span>Book Now</span>
