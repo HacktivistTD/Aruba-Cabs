@@ -11,37 +11,40 @@ export default function BackgroundMusic() {
     // Create audio element
     const audio = new Audio("/music.mp3");
     audio.loop = true;
-    audio.volume = 0; // start muted for fade-in
+    audio.volume = 0; // start muted
     audioRef.current = audio;
 
-    // Play music after first user interaction
-    const startMusic = () => {
-      audioRef.current?.play().then(() => {
-        // Fade in volume over 2 seconds
+    // Try to autoplay immediately (muted)
+    audio
+      .play()
+      .then(() => {
+        // Fade in volume gradually
         let vol = 0;
-        const fade = setInterval(() => {
+        const fadeInterval = setInterval(() => {
           if (audioRef.current) {
-            vol += 0.05;
-            audioRef.current.volume = Math.min(vol, 0.5); // max 50%
-            if (vol >= 0.5) clearInterval(fade);
+            vol += 0.01;
+            audioRef.current.volume = Math.min(vol, 0.5); // target max volume
+            if (vol >= 0.5) clearInterval(fadeInterval);
           }
-        }, 100);
-      }).catch(err => {
-        console.log("Autoplay blocked:", err);
+        }, 100); // every 100ms
+      })
+      .catch((err) => {
+        console.log("Autoplay blocked, waiting for user interaction:", err);
+
+        // fallback: wait for first click or touch
+        const startMusic = () => {
+          audioRef.current?.play().catch((err) =>
+            console.log("Playback still blocked:", err)
+          );
+          window.removeEventListener("click", startMusic);
+          window.removeEventListener("touchstart", startMusic);
+        };
+        window.addEventListener("click", startMusic);
+        window.addEventListener("touchstart", startMusic);
       });
-
-      window.removeEventListener("click", startMusic);
-      window.removeEventListener("touchstart", startMusic);
-    };
-
-    // Listen for first interaction
-    window.addEventListener("click", startMusic);
-    window.addEventListener("touchstart", startMusic);
 
     // Cleanup
     return () => {
-      window.removeEventListener("click", startMusic);
-      window.removeEventListener("touchstart", startMusic);
       audioRef.current?.pause();
       audioRef.current = null;
     };
