@@ -28,7 +28,7 @@ const DriverInfoPopup = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => 
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      className="fixed inset-0 bg-black/70 backdrop-blur-sm flex items-center justify-center z-50 p-4"
+      className="fixed inset-0  backdrop-blur-sm flex items-center justify-center z-50 p-4"
       onClick={onClose}
     >
       <motion.div
@@ -36,20 +36,20 @@ const DriverInfoPopup = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => 
         animate={{ scale: 1, opacity: 1, y: 0 }}
         exit={{ scale: 0.8, opacity: 0, y: 50 }}
         transition={{ type: "spring", duration: 0.5 }}
-        className="bg-gradient-to-br from-white to-yellow-50 rounded-3xl shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto relative"
+        className=" rounded-3xl shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto relative"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Close Button */}
         <button
           onClick={onClose}
-          className="absolute top-4 right-4 p-2 rounded-full bg-gray-100 hover:bg-gray-200 transition-colors z-10"
+          className="absolute top-4 right-4 p-2 rounded-full  hover:bg-gray-200 transition-colors z-10"
         >
           <X className="w-5 h-5 text-gray-600" />
         </button>
 
         {/* Header */}
-        <div className="bg-gradient-to-r from-yellow-400 to-orange-400 p-8 rounded-t-3xl text-center">
-          <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center mx-auto mb-4">
+        <div className=" p-8 rounded-t-3xl text-center">
+          <div className="w-16 h-16  rounded-full flex items-center justify-center mx-auto mb-4">
             <Users className="w-8 h-8 text-yellow-600" />
           </div>
           <h2 className="text-3xl font-bold text-white mb-2">Our Professional Drivers</h2>
@@ -148,7 +148,7 @@ export default function AboutPage() {
   const slideInRight = useScrollAnimation();
 
   return (
-    <main className="min-h-screen bg-white">
+    <main className="min-h-screen ">
       {/* Hero Section */}
       <section className="py-20 px-6 text-center relative overflow-hidden">
         {/* Background Elements */}
@@ -309,7 +309,7 @@ export default function AboutPage() {
               transition={{ delay: index * 0.2, duration: 0.6 }}
               className="group cursor-pointer"
             >
-              <div className="bg-white p-8 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 h-full border-2 border-transparent hover:border-yellow-300/50">
+              <div className=" p-8 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 h-full border-2 border-transparent hover:border-yellow-300/50">
                 <div className={`w-20 h-20 bg-gradient-to-r ${value.color} rounded-2xl flex items-center justify-center mx-auto mb-6 text-3xl shadow-lg group-hover:scale-110 transition-transform duration-300`}>
                   {value.icon}
                 </div>
@@ -366,7 +366,7 @@ export default function AboutPage() {
           transition={{ duration: 0.8 }}
           className="max-w-4xl mx-auto"
         >
-          <h2 className="text-4xl md:text-6xl font-bold mb-8 text-black">
+          <h2 className="text-4xl md:text-6xl font-bold mb-8 text-shadow-green-500">
             Ready to Explore with Us?
           </h2>
           <motion.p

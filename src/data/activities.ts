@@ -147,7 +147,7 @@ const activities: Activity[] = [
   {
     id: 11,
     title: "Surfing in Weligama",
-    image: "/surfing-weligama.jpg",
+    image: "/Surfing-weligama.png",
     alt: "Surfing waves in Weligama",
     location: "Southern Province",
     rating: 4.7,
@@ -155,7 +155,7 @@ const activities: Activity[] = [
     category: "Marine Adventure",
     duration: "2-4 hours",
     description:
-      "Ride the waves in one of Sri Lanka’s most popular surfing spots, perfect for beginners and pros.",
+      "Ride the waves in one of Sri Lanka &apos;s most popular surfing spots, perfect for beginners and pros.",
   },
   {
     id: 12,

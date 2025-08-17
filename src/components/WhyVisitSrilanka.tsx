@@ -33,9 +33,9 @@ export default function WhyVisitSrilanka() {
   ];
 
   return (
-    <section className="relative py-20 bg-gradient-to-b from-white to-green-50 overflow-hidden">
+    <section className="relative py-20 ">
       {/* Decorative background */}
-      <div className="absolute inset-0 opacity-10 bg-[radial-gradient(circle_at_top_left,_#22c55e_0%,_transparent_50%)]" />
+      <div className="absolute inset-0 opacity-10 " />
 
       <div className="max-w-6xl mx-auto px-6 text-center relative z-10">
         {/* Heading */}
@@ -43,7 +43,7 @@ export default function WhyVisitSrilanka() {
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          className="text-4xl md:text-5xl font-extrabold mb-6 bg-gradient-to-r from-green-400 to-amber-500 bg-clip-text text-transparent"
+          className="text-4xl md:text-5xl font-bold mb-6 text-green-500"
         >
           Why Visit Sri Lanka?
         </motion.h2>
@@ -55,9 +55,9 @@ export default function WhyVisitSrilanka() {
           className="text-lg md:text-xl text-gray-700 mb-14 max-w-3xl mx-auto"
         >
           More than just a destination, Sri Lanka is an experience of{" "}
-          <span className="font-semibold text-green-600">nature</span>,{" "}
-          <span className="font-semibold text-amber-600">culture</span>, and{" "}
-          <span className="font-semibold text-blue-600">timeless beauty</span>.  
+          <span className="font-semibold ">nature</span>,{" "}
+          <span className="font-semibold ">culture</span>, and{" "}
+          <span className="font-semibold ">timeless beauty</span>.  
           Here&apos;s why it deserves a spot on your travel list.
         </motion.p>
 

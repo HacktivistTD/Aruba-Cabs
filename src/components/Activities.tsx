@@ -5,6 +5,7 @@ import { ChevronLeft, ChevronRight, MapPin, Star } from "lucide-react";
 import Image from "next/image";
 import activities from "@/data/activities";
 import { motion } from "framer-motion";
+import { FaWhatsapp } from "react-icons/fa";
 
 export default function ActivitiesPage() {
   const scrollRef = useRef<HTMLDivElement>(null);
@@ -47,31 +48,31 @@ export default function ActivitiesPage() {
   ];
 
   return (
-    <div className="relative max-w-7xl mx-auto p-6 bg-gradient-to-br from-blue-50 via-white to-orange-50 min-h-screen">
+    <div className="relative max-w-7xl mx-auto p-3 sm:p-4 lg:p-6 min-h-screen">
       {/* Header Section */}
       <div
-        className={`text-center mb-12 transition-all duration-1000 ${
+        className={`text-center mb-8 sm:mb-10 lg:mb-12 transition-all duration-1000 ${
           isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
         }`}
       >
-        <h1 className="text-5xl font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-orange-600 bg-clip-text text-transparent mb-4">
+        <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-orange-600 bg-clip-text text-transparent mb-3 sm:mb-4 px-4">
           Discover Sri Lanka
         </h1>
-        <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+        <p className="text-base sm:text-lg lg:text-xl text-gray-600 max-w-2xl mx-auto px-4">
           Experience the pearl of the Indian Ocean through unforgettable
           adventures
         </p>
-        <div className="w-24 h-1 bg-gradient-to-r from-blue-500 to-orange-500 mx-auto mt-4 rounded-full"></div>
+        <div className="w-16 sm:w-20 lg:w-24 h-1 bg-gradient-to-r from-blue-500 to-orange-500 mx-auto mt-3 sm:mt-4 rounded-full"></div>
       </div>
 
       {/* Category Filter Tabs */}
-      <div className="flex justify-center mb-8 overflow-x-auto">
-        <div className="flex space-x-2 bg-white/80 backdrop-blur-sm rounded-full p-2 shadow-lg">
+      <div className="flex justify-center mb-6 sm:mb-8 px-2">
+        <div className="flex space-x-1 sm:space-x-2 bg-white/80 backdrop-blur-sm rounded-full p-1 sm:p-2 shadow-lg overflow-x-auto max-w-full">
           {categories.map((category) => (
             <button
               key={category}
               onClick={() => setActiveCategory(category)}
-              className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 whitespace-nowrap
+              className={`px-2 sm:px-3 lg:px-4 py-1.5 sm:py-2 rounded-full text-xs sm:text-sm font-medium transition-all duration-300 whitespace-nowrap flex-shrink-0
                 ${
                   activeCategory === category
                     ? "bg-gradient-to-r from-blue-500 to-purple-600 text-white shadow-lg"
@@ -84,30 +85,30 @@ export default function ActivitiesPage() {
         </div>
       </div>
 
-      {/* Scroll Buttons */}
+      {/* Scroll Buttons - Hidden on mobile */}
       <button
         onClick={() => scroll("left")}
-        className="absolute left-4 top-1/2 -translate-y-1/2 bg-white/90 backdrop-blur-sm hover:bg-white shadow-lg hover:shadow-xl rounded-full p-3 z-20 transition-all duration-300 hover:scale-110 group"
+        className="hidden sm:block absolute left-2 lg:left-4 top-1/2 -translate-y-1/2 bg-white/90 backdrop-blur-sm hover:bg-white shadow-lg hover:shadow-xl rounded-full p-2 lg:p-3 z-20 transition-all duration-300 hover:scale-110 group"
       >
         <ChevronLeft
-          size={24}
-          className="text-gray-700 group-hover:text-blue-600 transition-colors"
+          size={20}
+          className="lg:w-6 lg:h-6 text-gray-700 group-hover:text-blue-600 transition-colors"
         />
       </button>
       <button
         onClick={() => scroll("right")}
-        className="absolute right-4 top-1/2 -translate-y-1/2 bg-white/90 backdrop-blur-sm hover:bg-white shadow-lg hover:shadow-xl rounded-full p-3 z-20 transition-all duration-300 hover:scale-110 group"
+        className="hidden sm:block absolute right-2 lg:right-4 top-1/2 -translate-y-1/2 bg-white/90 backdrop-blur-sm hover:bg-white shadow-lg hover:shadow-xl rounded-full p-2 lg:p-3 z-20 transition-all duration-300 hover:scale-110 group"
       >
         <ChevronRight
-          size={24}
-          className="text-gray-700 group-hover:text-blue-600 transition-colors"
+          size={20}
+          className="lg:w-6 lg:h-6 text-gray-700 group-hover:text-blue-600 transition-colors"
         />
       </button>
 
       {/* Activities Grid */}
       <div
         ref={scrollRef}
-        className="flex overflow-x-auto gap-6 scroll-smooth no-scrollbar pb-6"
+        className="flex overflow-x-auto gap-3 sm:gap-4 lg:gap-6 scroll-smooth no-scrollbar pb-4 sm:pb-6 px-2 sm:px-0"
       >
         {filteredActivities.map((activity, index) => (
           <motion.div
@@ -115,9 +116,9 @@ export default function ActivitiesPage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: index * 0.1, duration: 0.6 }}
-            className="min-w-[calc(33.333%-1rem)] flex-shrink-0 group cursor-pointer transition-all duration-700"
+            className="min-w-[280px] sm:min-w-[300px] md:min-w-[calc(50%-0.5rem)] lg:min-w-[calc(33.333%-1rem)] xl:min-w-[calc(25%-1.125rem)] flex-shrink-0 group cursor-pointer transition-all duration-700"
           >
-            <div className="relative bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:scale-[1.02] hover:-translate-y-2">
+            <div className="relative bg-white rounded-xl sm:rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:scale-[1.02] hover:-translate-y-1 sm:hover:-translate-y-2">
               {/* Image */}
               <div className="relative overflow-hidden">
                 <Image
@@ -125,26 +126,23 @@ export default function ActivitiesPage() {
                   alt={activity.alt}
                   width={500}
                   height={250}
-                  className="w-full h-64 object-cover transition-transform duration-700 group-hover:scale-110"
+                  className="w-full h-48 sm:h-56 lg:h-64 object-cover transition-transform duration-700 group-hover:scale-110"
                 />
-                {/* Overlay */}
-                <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center text-white text-center p-4">
+                {/* Overlay - Hidden on mobile for better touch interaction */}
+                <div className="hidden sm:flex absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 items-center justify-center text-white text-center p-4">
                   <p className="text-sm">{activity.description}</p>
                 </div>
 
-                {/* Price Badge */}
-                <div className="absolute top-4 right-4 bg-green-500 text-white px-3 py-1 rounded-full text-sm font-semibold shadow-lg transform translate-x-12 group-hover:translate-x-0 transition-transform duration-500">
-                  {activity.price}
-                </div>
+              
               </div>
 
               {/* Content */}
-              <div className="p-6">
-                <div className="flex justify-between items-start mb-2">
-                  <h3 className="text-xl font-bold text-gray-800 group-hover:text-blue-600 transition-colors duration-300 flex-1">
+              <div className="p-4 sm:p-5 lg:p-6">
+                <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start mb-2 gap-2 sm:gap-0">
+                  <h3 className="text-lg sm:text-xl font-bold text-black group-hover:text-blue-600 transition-colors duration-300 flex-1">
                     {activity.title}
                   </h3>
-                  <span className="bg-blue-100 text-blue-800 px-2 py-1 rounded-full text-xs font-medium ml-2 whitespace-nowrap">
+                  <span className="bg-blue-100 text-blue-800 px-2 py-1 rounded-full text-xs font-medium self-start sm:ml-2 whitespace-nowrap">
                     {activity.category}
                   </span>
                 </div>
@@ -154,9 +152,9 @@ export default function ActivitiesPage() {
                   <span className="text-sm">{activity.location}</span>
                 </div>
 
-                <div className="flex items-center text-gray-600 mb-4">
+                <div className="flex items-center mb-4">
                   <svg
-                    className="w-4 h-4 mr-1 text-orange-500"
+                    className="w-4 h-4 mr-1 text-orange-500 flex-shrink-0"
                     fill="currentColor"
                     viewBox="0 0 20 20"
                   >
@@ -177,38 +175,45 @@ export default function ActivitiesPage() {
                     </span>
                   </div>
 
-                  <button className="bg-gradient-to-r from-blue-500 to-purple-600 text-white px-4 py-2 rounded-full text-sm font-semibold hover:from-blue-600 hover:to-purple-700 transform hover:scale-105 transition-all duration-300 shadow-md hover:shadow-lg">
+                  <button className="bg-gradient-to-r from-blue-500 to-purple-600 text-white px-3 sm:px-4 py-1.5 sm:py-2 rounded-full text-xs sm:text-sm font-semibold hover:from-blue-600 hover:to-purple-700 transform hover:scale-105 transition-all duration-300 shadow-md hover:shadow-lg">
                     Book Now
                   </button>
                 </div>
               </div>
 
-              <div className="absolute inset-0 rounded-2xl border-2 border-transparent group-hover:border-blue-300 transition-all duration-500"></div>
+              <div className="absolute inset-0 rounded-xl sm:rounded-2xl border-2 border-transparent group-hover:border-blue-300 transition-all duration-500"></div>
             </div>
           </motion.div>
         ))}
       </div>
 
       {/* Progress Indicators */}
-      <div className="flex justify-center mt-8 space-x-2">
+      <div className="flex justify-center mt-6 sm:mt-8 space-x-2">
         {Array.from({ length: Math.max(0, filteredActivities.length - 2) }).map(
           (_, index) => (
             <div
               key={index}
-              className={`h-2 rounded-full transition-all duration-500 ${
+              className={`h-1.5 sm:h-2 rounded-full transition-all duration-500 ${
                 index === currentIndex
-                  ? "w-8 bg-gradient-to-r from-blue-500 to-purple-600"
-                  : "w-2 bg-gray-300 hover:bg-gray-400"
+                  ? "w-6 sm:w-8 bg-gradient-to-r from-blue-500 to-purple-600"
+                  : "w-1.5 sm:w-2 bg-gray-300 hover:bg-gray-400"
               }`}
             />
           )
         )}
       </div>
 
-      {/* Floating MapPin */}
-      <button className="fixed bottom-8 right-8 bg-gradient-to-r from-orange-500 to-pink-600 text-white p-4 rounded-full shadow-lg hover:shadow-xl transform hover:scale-110 transition-all duration-300 z-30 animate-pulse hover:animate-none">
-        <MapPin size={24} />
-      </button>
+      {/* Floating WhatsApp Button */}
+      <a
+        href="https://wa.me/94777656999"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Chat on WhatsApp"
+      >
+        <button className="fixed bottom-4 sm:bottom-6 lg:bottom-8 right-4 sm:right-6 lg:right-8 bg-green-400 text-white p-3 sm:p-4 rounded-full shadow-lg hover:shadow-xl transform hover:scale-110 transition-all duration-300 z-30 animate-pulse hover:animate-none">
+          <FaWhatsapp size={20} className="sm:w-6 sm:h-6" />
+        </button>
+      </a>
 
       <style jsx>{`
         .no-scrollbar::-webkit-scrollbar {

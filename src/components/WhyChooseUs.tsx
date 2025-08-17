@@ -69,7 +69,7 @@ export default function WhyChooseUs() {
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, amount: 0.2 }}
-      className="py-16 sm:py-20 lg:py-24 px-4 sm:px-6 lg:px-8 bg-gray-50"
+      className="py-16 sm:py-20 lg:py-24 px-4 sm:px-6 lg:px-8 "
     >
       <div className="max-w-7xl mx-auto">
         {/* Heading */}
@@ -80,7 +80,7 @@ export default function WhyChooseUs() {
               Aruba Cab Services?
             </span>
           </h2>
-          <p className="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto">
+          <p className="text-lg sm:text-xl  max-w-3xl mx-auto">
             Experience the difference with our premium transportation services
           </p>
         </motion.div>
@@ -98,7 +98,7 @@ export default function WhyChooseUs() {
                   scale: 1.03,
                   transition: { duration: 0.3 },
                 }}
-                className="group relative bg-gradient-to-br from-gray-800 to-gray-900 rounded-3xl overflow-hidden shadow-2xl border border-gray-700 hover:border-gray-500 transition-all duration-500"
+                className="group relative rounded-3xl overflow-hidden shadow-2xl border border-gray-700 hover:border-gray-500 transition-all duration-500"
               >
                 {/* Gradient Border Hover Effect */}
                 <div

@@ -61,7 +61,7 @@ export default function ContactPage() {
   };
 
   return (
-    <main className="min-h-screen py-12 px-6 bg-white">
+    <main className="min-h-screen py-12 px-6 ">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <motion.div
