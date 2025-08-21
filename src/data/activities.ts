@@ -35,7 +35,7 @@ const activities: Activity[] = [
     location: "Southern Province",
     rating: 4.7,
     price: "$45",
-    category: "Wildlife",
+    category: "Wildlife Safari",
     duration: "6-8 hours",
     description:
       "World's highest leopard density park with elephants, sloth bears & diverse wildlife.",
@@ -87,7 +87,7 @@ const activities: Activity[] = [
     location: "Ella",
     rating: 4.8,
     price: "$25",
-    category: "Trekking",
+    category: "Hiking",
     duration: "8-10 hours",
     description:
       "Sacred pilgrimage site with breathtaking sunrise views from the summit.",
@@ -139,7 +139,7 @@ const activities: Activity[] = [
     location: "North Central Province",
     rating: 4.7,
     price: "$40",
-    category: "Wildlife",
+    category: "Wildlife Safari",
     duration: "4-5 hours",
     description:
       "Witness hundreds of wild elephants gathering at the ancient reservoir.",
@@ -152,7 +152,7 @@ const activities: Activity[] = [
     location: "Southern Province",
     rating: 4.7,
     price: "$40",
-    category: "Marine Adventure",
+    category: "Surfing",
     duration: "2-4 hours",
     description:
       "Ride the waves in one of Sri Lanka &apos;s most popular surfing spots, perfect for beginners and pros.",
@@ -178,24 +178,51 @@ const activities: Activity[] = [
     location: "Sabaragamuwa Province",
     rating: 4.6,
     price: "$25",
-    category: "Adventure",
+    category: "Kayaking",
     duration: "2-3 hours",
     description:
       "Paddle through calm waters surrounded by lush greenery and mountains.",
   },
   {
-    id: 14,
-    title: "Rappelling in Kitulgala",
+    id: 15,
+    title: "Udawalawa Safari",
+    image: "/udawalawa-national-park.jpg",
+    alt: "Udawalawa National Park",
+    location: "Udawalawa",
+    rating: 4.7,
+    price: "$45",
+    category: "Wildlife Safari",
+    duration: "3-4 hours",
+    description:
+      "An adrenaline-filled experience rappelling down waterfalls in the rainforest.",
+  },
+    {
+    id: 16,
+    title: "Boat tour in Madu River",
     image: "/madu-river-boat-ride.jpeg",
-    alt: "Rappelling down a waterfall",
-    location: "Kitulgala",
+    alt: "Boat tour in Madu River",
+    location: "Madu River",
     rating: 4.7,
     price: "$45",
     category: "Adventure",
     duration: "3-4 hours",
     description:
-      "An adrenaline-filled experience rappelling down waterfalls in the rainforest.",
+      "Explore the mangrove forests and islands of Madu River on a scenic boat tour.",
   },
+   {
+    id: 17,
+    title: "Hike to Adams Peak",
+    image: "/adams-peak.png",
+    alt: "Hike to Adams Peak",
+    location: "Adams Peak",
+    rating: 4.7,
+    price: "$45",
+    category: "treking",
+    duration: "3-4 hours",
+    description:
+      "Explore the mangrove forests and islands of Madu River on a scenic boat tour.",
+  },
+
 ];
 
 export default activities;
