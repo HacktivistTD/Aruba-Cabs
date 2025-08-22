@@ -3,11 +3,14 @@
 import { useState, useEffect } from 'react';
 import { UserAuth } from '@/context/AuthContext';
 import { useRouter } from 'next/navigation';
+import { FaEye, FaEyeSlash } from 'react-icons/fa'; // Import icons
 
 export default function AdminLogin() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
+  // Add a new state for password visibility
+  const [showPassword, setShowPassword] = useState(false); 
   const { user, emailSignIn } = UserAuth();
   const router = useRouter();
 
@@ -23,7 +26,6 @@ export default function AdminLogin() {
   };
 
   useEffect(() => {
-    // If user is logged in, redirect to the admin dashboard
     if (user) {
       router.push('/admin');
     }
@@ -53,7 +55,7 @@ export default function AdminLogin() {
               required
             />
           </div>
-          <div>
+          <div className="relative"> {/* Use a relative container */}
             <label
               htmlFor="password"
               className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
@@ -61,13 +63,22 @@ export default function AdminLogin() {
               Password
             </label>
             <input
-              type="password"
+              // Dynamically set the input type
+              type={showPassword ? 'text' : 'password'} 
               id="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white"
               required
             />
+            {/* Add the icon button here */}
+            <button
+              type="button"
+              onClick={() => setShowPassword(!showPassword)}
+              className="absolute inset-y-0 right-0 top-7 pr-3 flex items-center text-gray-400"
+            >
+              {showPassword ? <FaEyeSlash /> : <FaEye />}
+            </button>
           </div>
           {error && (
             <p className="text-sm text-red-500 text-center">{error}</p>

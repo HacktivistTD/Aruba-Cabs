@@ -1,7 +1,8 @@
 import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import BackgroundMusic from "@/components/BackgroundMusic"; // ✅ Import here
+import BackgroundMusic from "@/components/BackgroundMusic";
+import { AuthContextProvider } from "@/context/AuthContext";
 
 export const metadata = {
   title: "Aruba Cab Services",
@@ -33,10 +34,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en">
       <body className="flex flex-col min-h-screen font-graduate">
-        <BackgroundMusic /> {/* ✅ Plays music after first click */}
-        <Header />
-        <main className="flex-grow container mx-auto p-6">{children}</main>
-        <Footer />
+        <AuthContextProvider> 
+          <BackgroundMusic />
+          <Header />
+          <main className="flex-grow container mx-auto p-6">{children}</main>
+          <Footer />
+        </AuthContextProvider> {/* ✅ Closing tag added */}
       </body>
     </html>
   );

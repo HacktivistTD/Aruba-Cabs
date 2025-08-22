@@ -9,7 +9,7 @@ import { UserAuth } from '@/context/AuthContext';
 import { useRouter } from 'next/navigation';
 
 // IMPORTANT: Replace this with your actual admin email address
-const ADMIN_EMAIL = 'YOUR_ADMIN_EMAIL@gmail.com';
+const ADMIN_EMAIL = 'thusharadilrukshatd@gmail.com';
 
 interface Booking {
   id: string;
