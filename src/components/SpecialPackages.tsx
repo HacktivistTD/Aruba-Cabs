@@ -2,11 +2,10 @@
 
 import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
-import { X, MapPin, Hotel, Calendar, Users, Star, ArrowRight, ChevronLeft, ChevronRight, Clock, Mail, Phone, User, MessageSquare, Car, MapPinIcon } from 'lucide-react';
+import { X, MapPin, Hotel, Calendar, Users, Star, ArrowRight, ChevronLeft, ChevronRight, Clock, User, MessageSquare } from 'lucide-react';
 import { packages, PackageType } from '@/data/tour-locations';
-
-
-
+import { db } from '@/lib/firebase';
+import { collection, addDoc, Timestamp } from 'firebase/firestore';
 
 export default function AdvancedSpecialPackages() {
   const [selectedPackage, setSelectedPackage] = useState<PackageType | null>(null);
@@ -14,6 +13,7 @@ export default function AdvancedSpecialPackages() {
   const [imageLoading, setImageLoading] = useState(false);
   const [showBookingForm, setShowBookingForm] = useState(false);
   const [bookingType, setBookingType] = useState<'book' | 'quote'>('book');
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -27,11 +27,10 @@ export default function AdvancedSpecialPackages() {
   });
   const modalRef = useRef(null);
 
-  // Handle image navigation
   const nextImage = () => {
     if (selectedPackage) {
       setImageLoading(true);
-      setCurrentImageIndex((prev) => 
+      setCurrentImageIndex((prev) =>
         prev === selectedPackage.images.length - 1 ? 0 : prev + 1
       );
     }
@@ -40,25 +39,22 @@ export default function AdvancedSpecialPackages() {
   const prevImage = () => {
     if (selectedPackage) {
       setImageLoading(true);
-      setCurrentImageIndex((prev) => 
+      setCurrentImageIndex((prev) =>
         prev === 0 ? selectedPackage.images.length - 1 : prev - 1
       );
     }
   };
 
-  // Close modal on escape key
   useEffect(() => {
     const handleEscape = (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
-        setSelectedPackage(null);
+        closeModal();
       }
     };
-    
     if (selectedPackage) {
       document.addEventListener('keydown', handleEscape);
       document.body.style.overflow = 'hidden';
     }
-    
     return () => {
       document.removeEventListener('keydown', handleEscape);
       document.body.style.overflow = 'unset';
@@ -73,19 +69,7 @@ export default function AdvancedSpecialPackages() {
 
   const closeModal = () => {
     setSelectedPackage(null);
-    setCurrentImageIndex(0);
     setShowBookingForm(false);
-    setFormData({
-      name: '',
-      email: '',
-      whatsapp: '',
-      country: '',
-      startDate: '',
-      endDate: '',
-      vehicleType: 'budget-car',
-      notes: '',
-      questions: ''
-    });
   };
 
   const handleBookingClick = (type: 'book' | 'quote') => {
@@ -101,67 +85,46 @@ export default function AdvancedSpecialPackages() {
     }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
-    if (!selectedPackage) return;
+    if (!selectedPackage || isSubmitting) return;
 
-    const subject = `${bookingType === 'book' ? 'Package Booking' : 'Quote Request'}: ${selectedPackage.title}`;
-    
-    const emailBody = `
-Package Details:
-- Package: ${selectedPackage.title}
-- Duration: ${selectedPackage.duration}
-- Price: ${selectedPackage.price}
-- Request Type: ${bookingType === 'book' ? 'Booking' : 'Quote Request'}
+    setIsSubmitting(true);
 
-Customer Information:
-- Name: ${formData.name}
-- Email: ${formData.email}
-- WhatsApp: ${formData.whatsapp}
-- Country: ${formData.country}
+    try {
+      await addDoc(collection(db, "special-package-bookings"), {
+        packageName: selectedPackage.title,
+        packageId: selectedPackage.id,
+        ...formData,
+        bookingType: bookingType,
+        status: 'pending',
+        createdAt: Timestamp.now(),
+      });
 
-Travel Details:
-- Start Date: ${formData.startDate}
-- End Date: ${formData.endDate}
-- Vehicle Type: ${formData.vehicleType.replace('-', ' ').toUpperCase()}
-
-Additional Information:
-- Notes: ${formData.notes || 'No additional notes'}
-- Questions: ${formData.questions || 'No questions'}
-
-Places to Visit: ${selectedPackage.places.join(', ')}
-Accommodations: ${selectedPackage.nightStops.join(', ')}
-    `.trim();
-
-    const mailtoLink = `mailto:thusharadilrukshatd@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(emailBody)}`;
-    
-    // Open email client
-    window.location.href = mailtoLink;
-    
-    // Close the form after sending
-    setShowBookingForm(false);
-    
-    // Show success message (you can customize this)
-    alert(`Your ${bookingType === 'book' ? 'booking request' : 'quote request'} has been prepared! Please send the email that just opened.`);
+      alert(`Your ${bookingType === 'book' ? 'booking' : 'quote'} request has been sent successfully!`);
+      setShowBookingForm(false);
+      closeModal();
+      
+    } catch (error) {
+      console.error("Error adding document: ", error);
+      alert("There was an error sending your request. Please try again.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
-    <section className="py-20 ">
-   
-
+    <section className="py-20">
       <div className="container mx-auto px-6 relative z-10">
-        {/* Header */}
         <div className="text-center mb-16">
           <h2 className="text-5xl md:text-6xl font-bold text-black mb-4">
             Special Packages
           </h2>
-          <p className="text-xl text-green-800  max-w-3xl mx-auto leading-relaxed">
+          <p className="text-xl text-green-800 max-w-3xl mx-auto leading-relaxed">
             Curated experiences that go beyond ordinary travel. Discover Sri Lanka&apos;s hidden gems with our exclusive, handcrafted adventures.
           </p>
         </div>
 
-        {/* Package Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-8">
           {packages.map((pkg, index) => (
             <div
@@ -171,7 +134,6 @@ Accommodations: ${selectedPackage.nightStops.join(', ')}
               style={{ animationDelay: `${index * 200}ms` }}
             >
               <div className="relative bg-gradient-to-br from-gray-800 to-gray-900 rounded-3xl overflow-hidden shadow-2xl border border-gray-700 hover:border-gray-500 transition-all duration-500">
-                {/* Image Container */}
                 <div className="relative h-64 overflow-hidden">
                   <Image
                     src={pkg.images[0]}
@@ -182,16 +144,14 @@ Accommodations: ${selectedPackage.nightStops.join(', ')}
                     sizes="(max-width: 768px) 100vw, 33vw"
                     priority={false}
                   />
-                  <div className={`absolute inset-0  opacity-60 group-hover:opacity-80 transition-opacity duration-500`}></div>
+                  <div className="absolute inset-0 opacity-60 group-hover:opacity-80 transition-opacity duration-500"></div>
                   
-                  {/* Floating elements */}
                   <div className="absolute top-4 right-4 flex gap-2">
                     <span className="bg-white/20 backdrop-blur-sm text-white px-3 py-1 rounded-full text-sm font-medium">
                       ⭐ {pkg.rating}
                     </span>
                   </div>
                   
-                  {/* Hover overlay */}
                   <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-all duration-300 flex items-center justify-center">
                     <div className="transform scale-75 group-hover:scale-100 transition-transform duration-300">
                       <ArrowRight className="text-white w-12 h-12" />
@@ -199,8 +159,6 @@ Accommodations: ${selectedPackage.nightStops.join(', ')}
                   </div>
                 </div>
                 
-
-                {/* Content */}
                 <div className="p-6">
                   <div className="mb-4">
                     <h3 className="text-2xl font-bold text-white mb-2 group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:bg-clip-text group-hover:from-blue-400 group-hover:to-purple-400 transition-all duration-300">
@@ -213,7 +171,6 @@ Accommodations: ${selectedPackage.nightStops.join(', ')}
                     {pkg.description}
                   </p>
                   
-                  {/* Package details */}
                   <div className="grid grid-cols-2 gap-4 mb-6 text-sm">
                     <div className="flex items-center gap-2 text-gray-400">
                       <Calendar className="w-4 h-4" />
@@ -233,7 +190,6 @@ Accommodations: ${selectedPackage.nightStops.join(', ')}
                     </div>
                   </div>
                   
-                  {/* Price and CTA */}
                   <div className="flex items-center justify-between">
                     <div>
                       <span className="text-2xl font-bold text-white">From {pkg.price}</span>
@@ -250,7 +206,6 @@ Accommodations: ${selectedPackage.nightStops.join(', ')}
         </div>
       </div>
 
-      {/* Advanced Modal */}
       {selectedPackage && (
         <div 
           className="fixed inset-0 bg-black/95 backdrop-blur-sm z-50 flex items-center justify-center p-4 animate-fadeIn"
@@ -260,7 +215,6 @@ Accommodations: ${selectedPackage.nightStops.join(', ')}
             ref={modalRef}
             className="bg-gradient-to-br from-gray-900 to-gray-800 rounded-2xl max-w-7xl w-full max-h-[90vh] overflow-hidden shadow-2xl border border-gray-700 animate-scaleIn"
           >
-            {/* Header */}
             <div className="flex items-center justify-between p-6 border-b border-gray-700">
               <div>
                 <h1 className="text-3xl font-bold text-white mb-1">{selectedPackage.title}</h1>
@@ -274,10 +228,8 @@ Accommodations: ${selectedPackage.nightStops.join(', ')}
               </button>
             </div>
 
-            {/* Scrollable content */}
             <div className="overflow-y-auto max-h-[calc(90vh-100px)] custom-scrollbar">
               <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 p-6">
-                {/* Main Image Section */}
                 <div className="lg:col-span-2">
                   <div className="relative rounded-xl overflow-hidden mb-6 group">
                     {imageLoading && (
@@ -295,7 +247,6 @@ Accommodations: ${selectedPackage.nightStops.join(', ')}
                       onLoad={() => setImageLoading(false)}
                     />
                     
-                    {/* Image navigation */}
                     {selectedPackage.images.length > 1 && (
                       <>
                         <button
@@ -313,7 +264,6 @@ Accommodations: ${selectedPackage.nightStops.join(', ')}
                       </>
                     )}
                     
-                    {/* Image indicators */}
                     {selectedPackage.images.length > 1 && (
                       <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2">
                         {selectedPackage.images.map((_, index) => (
@@ -334,7 +284,6 @@ Accommodations: ${selectedPackage.nightStops.join(', ')}
                     )}
                   </div>
 
-                  {/* Thumbnail Gallery */}
                   {selectedPackage.images.length > 1 && (
                     <div className="grid grid-cols-3 gap-3">
                       {selectedPackage.images.map((image, index) => (
@@ -363,9 +312,7 @@ Accommodations: ${selectedPackage.nightStops.join(', ')}
                   )}
                 </div>
 
-                {/* Details Section */}
                 <div className="space-y-6">
-                  {/* Package Info */}
                   <div className="bg-gray-800/50 rounded-xl p-6 backdrop-blur-sm">
                     <div className="grid grid-cols-2 gap-4 mb-6">
                       <div className="text-center p-3 bg-gray-700/50 rounded-lg">
@@ -406,7 +353,6 @@ Accommodations: ${selectedPackage.nightStops.join(', ')}
                     </div>
                   </div>
 
-                  {/* Places to Visit */}
                   <div className="bg-gray-800/50 rounded-xl p-6 backdrop-blur-sm">
                     <h3 className="text-xl font-bold text-white mb-4 flex items-center gap-2">
                       <MapPin className="w-5 h-5 text-blue-400" />
@@ -422,7 +368,6 @@ Accommodations: ${selectedPackage.nightStops.join(', ')}
                     </div>
                   </div>
 
-                  {/* Accommodations */}
                   <div className="bg-gray-800/50 rounded-xl p-6 backdrop-blur-sm">
                     <h3 className="text-xl font-bold text-white mb-4 flex items-center gap-2">
                       <Hotel className="w-5 h-5 text-green-400" />
@@ -440,7 +385,6 @@ Accommodations: ${selectedPackage.nightStops.join(', ')}
                 </div>
               </div>
 
-              {/* Itinerary Section */}
               <div className="px-6 pb-6">
                 <div className="bg-gray-800/50 rounded-xl p-6 backdrop-blur-sm mb-6">
                   <h3 className="text-2xl font-bold text-white mb-6 flex items-center gap-2">
@@ -472,7 +416,6 @@ Accommodations: ${selectedPackage.nightStops.join(', ')}
                   </div>
                 </div>
 
-                {/* Description */}
                 <div className="bg-gray-800/50 rounded-xl p-6 backdrop-blur-sm">
                   <h3 className="text-2xl font-bold text-white mb-4">About This Experience</h3>
                   <p className="text-gray-300 leading-relaxed text-lg">
@@ -485,11 +428,9 @@ Accommodations: ${selectedPackage.nightStops.join(', ')}
         </div>
       )}
 
-      {/* Booking/Quote Form Modal */}
       {showBookingForm && selectedPackage && (
         <div className="fixed inset-0 bg-black/95 backdrop-blur-sm z-50 flex items-center justify-center p-4 animate-fadeIn">
           <div className="bg-gradient-to-br from-gray-900 to-gray-800 rounded-2xl max-w-2xl w-full max-h-[90vh] overflow-hidden shadow-2xl border border-gray-700 animate-scaleIn">
-            {/* Form Header */}
             <div className="flex items-center justify-between p-6 border-b border-gray-700">
               <div>
                 <h2 className="text-2xl font-bold text-white mb-1">
@@ -505,10 +446,8 @@ Accommodations: ${selectedPackage.nightStops.join(', ')}
               </button>
             </div>
 
-            {/* Form Content */}
             <div className="overflow-y-auto max-h-[calc(90vh-140px)] custom-scrollbar p-6">
               <form onSubmit={handleSubmit} className="space-y-6">
-                {/* Personal Information */}
                 <div className="space-y-4">
                   <h3 className="text-lg font-semibold text-white flex items-center gap-2">
                     <User className="w-5 h-5 text-blue-400" />
@@ -580,7 +519,6 @@ Accommodations: ${selectedPackage.nightStops.join(', ')}
                   </div>
                 </div>
 
-                {/* Travel Details */}
                 <div className="space-y-4">
                   <h3 className="text-lg font-semibold text-white flex items-center gap-2">
                     <Calendar className="w-5 h-5 text-green-400" />
@@ -636,7 +574,6 @@ Accommodations: ${selectedPackage.nightStops.join(', ')}
                   </div>
                 </div>
 
-                {/* Additional Information */}
                 <div className="space-y-4">
                   <h3 className="text-lg font-semibold text-white flex items-center gap-2">
                     <MessageSquare className="w-5 h-5 text-purple-400" />
@@ -672,18 +609,19 @@ Accommodations: ${selectedPackage.nightStops.join(', ')}
                   </div>
                 </div>
 
-                {/* Package Summary */}
                 <div className="bg-gray-700/30 rounded-lg p-4">
-                  <h4 className="text-white font-semibold mb-2">Package Summary</h4>
-                  <div className="text-gray-300 text-sm space-y-1">
-                    <p><strong>Package:</strong> {selectedPackage.title}</p>
-                    <p><strong>Duration:</strong> {selectedPackage.duration}</p>
-                    <p><strong>Price:</strong> {selectedPackage.price} per person</p>
-                    <p><strong>Group Size:</strong> {selectedPackage.groupSize}</p>
+                  <h4 className="text-white font-semibold mb-3">Your Summary</h4>
+                  <div className="text-gray-300 text-sm space-y-2">
+                      <p><strong>Package:</strong> {selectedPackage.title}</p>
+                      <p><strong>Price:</strong> {selectedPackage.price} per person</p>
+                      <hr className="border-gray-600 my-2" />
+                      <p><strong>Name:</strong> {formData.name || '...'}</p>
+                      <p><strong>Email:</strong> {formData.email || '...'}</p>
+                      <p><strong>WhatsApp:</strong> {formData.whatsapp || '...'}</p>
+                      <p><strong>Dates:</strong> {formData.startDate || '...'} to {formData.endDate || '...'}</p>
                   </div>
                 </div>
 
-                {/* Submit Button */}
                 <div className="flex gap-4 pt-6">
                   <button
                     type="button"
@@ -694,9 +632,10 @@ Accommodations: ${selectedPackage.nightStops.join(', ')}
                   </button>
                   <button
                     type="submit"
-                    className="flex-1 px-6 py-3 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-lg font-semibold hover:shadow-lg hover:shadow-blue-500/25 transform hover:scale-105 transition-all duration-300"
+                    disabled={isSubmitting}
+                    className="flex-1 px-6 py-3 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-lg font-semibold hover:shadow-lg hover:shadow-blue-500/25 transform hover:scale-105 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
                   >
-                    {bookingType === 'book' ? 'Send Booking Request' : 'Send Quote Request'}
+                    {isSubmitting ? 'Sending...' : (bookingType === 'book' ? 'Send Booking Request' : 'Send Quote Request')}
                   </button>
                 </div>
               </form>
